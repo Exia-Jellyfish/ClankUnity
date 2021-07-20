@@ -5,6 +5,9 @@
 [Bb]uilds/
 Assets/AssetStoreTools*
 
+# Builds Files
+TestsBuilds/
+
 # Logs
 Logs/
 
