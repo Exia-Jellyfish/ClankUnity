@@ -9,7 +9,15 @@ public class PauseMenu : MonoBehaviour
     public static bool InGameOptions = false;
 
     public GameObject pauseMenuUI;
-    public GameObject optionsInGameUI;
+    public GameObject optionMenuPrefab;
+    private GameObject optionMenu;
+
+    private void Start()
+    {
+        GameObject parent = GameObject.Find("Canvas");
+        optionMenu = Instantiate(optionMenuPrefab, parent.transform);
+    }
+
 
     // Update is called once per frame
     void Update()
@@ -31,7 +39,7 @@ public class PauseMenu : MonoBehaviour
         pauseMenuUI.SetActive(false);
         GameIsPaused = false;
         Cursor.lockState = CursorLockMode.Locked;
-        optionsInGameUI.SetActive(false);
+        optionMenu.SetActive(false);
         InGameOptions = false;
     }
     void Pause()
@@ -44,6 +52,7 @@ public class PauseMenu : MonoBehaviour
     public void OptionsMenu()
     {
         InGameOptions = true;
+        optionMenu.SetActive(true);
         Debug.Log("loading options");
     }
 
