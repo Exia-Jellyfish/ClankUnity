@@ -6,8 +6,10 @@ using UnityEngine.SceneManagement;
 public class PauseMenu : MonoBehaviour
 {
     public static bool GameIsPaused = false;
+    public static bool InGameOptions = false;
 
     public GameObject pauseMenuUI;
+    public GameObject optionsInGameUI;
 
     // Update is called once per frame
     void Update()
@@ -18,7 +20,7 @@ public class PauseMenu : MonoBehaviour
             {
                 Resume();
             }
-            else
+            else if (!GameIsPaused && InGameOptions == false)
             {
                 Pause();
             }
@@ -26,9 +28,11 @@ public class PauseMenu : MonoBehaviour
     }
     public void Resume()
     {
-       pauseMenuUI.SetActive(false);
-       GameIsPaused = false;
-       Cursor.lockState = CursorLockMode.Locked;
+        pauseMenuUI.SetActive(false);
+        GameIsPaused = false;
+        Cursor.lockState = CursorLockMode.Locked;
+        optionsInGameUI.SetActive(false);
+        InGameOptions = false;
     }
     void Pause()
     {
@@ -39,6 +43,7 @@ public class PauseMenu : MonoBehaviour
 
     public void OptionsMenu()
     {
+        InGameOptions = true;
         Debug.Log("loading options");
     }
 
