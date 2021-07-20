@@ -11,6 +11,9 @@ TestsBuilds/
 # Logs
 Logs/
 
+# Visual Studio conf
+.vsconfig
+
 # Visual Studio cache directory
 .vs/
 
