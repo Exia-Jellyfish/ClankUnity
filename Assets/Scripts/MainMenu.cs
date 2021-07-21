@@ -9,10 +9,17 @@ public class MainMenu : MonoBehaviour
     public GameObject optionMenuPrefab;
     private GameObject optionMenu;
 
-        private void Start()
+    private void Start()
     {
         GameObject parent = GameObject.Find("Canvas");
         optionMenu = Instantiate(optionMenuPrefab, parent.transform);
+        int resolutionIndex = PlayerPrefs.GetInt("resolution", -1);
+        if (resolutionIndex != -1)
+        {
+            Debug.Log(resolutionIndex);
+            optionMenu.GetComponent<OptionsMenu>().FirstResolutionSetup();
+            optionMenu.GetComponent<OptionsMenu>().SetResolution(resolutionIndex);
+        }
     }
 
     public void PlayGame()

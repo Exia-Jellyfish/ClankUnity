@@ -6,31 +6,31 @@ using UnityEngine.Audio;
 
 public class OptionsStorage : MonoBehaviour
 {
-    public AudioMixer audioMixer;
-    [SerializeField] private Slider volumeSlider = null;
+    public Dropdown resolutionDropdown;
 
     private void Start()
     {
-        LoadValue();
+        LoadResolutionValue();
     }
 
 
-    public void VolumeSlider(float volume)
+    //Resolution dropdown and save&load values.
+    public void ResolutionDropdown(int resolution)
     {
-        PlayerPrefs.SetFloat("volume", volume);
+        PlayerPrefs.SetInt("resolution", resolution);
     }
 
-    public void SaveVolumeButton()
+    public void SaveResolutionButton()
     {
-        float volumeValue = volumeSlider.value;
-        PlayerPrefs.SetFloat("volume", volumeValue);
-        LoadValue();
+        int resolutionValue = resolutionDropdown.value;
+        PlayerPrefs.SetInt("resolution", resolutionValue);
+        LoadResolutionValue();
     }
 
-    void LoadValue()
+    void LoadResolutionValue()
     {
-        float volumeValue = PlayerPrefs.GetFloat("volume");
-        volumeSlider.value = volumeValue;
-        audioMixer.SetFloat("volume", volumeValue);
+        int resolutionValue = PlayerPrefs.GetInt("resolution");
+        resolutionDropdown.value = resolutionValue;
     }
+
 }
