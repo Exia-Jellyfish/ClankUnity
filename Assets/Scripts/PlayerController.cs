@@ -10,6 +10,16 @@ public class PlayerController : MonoBehaviour
     private float playerSpeed = 2.0f;
     public float gravity = -9.81f;
     private float jumpHeight = 1.0f;
+    private int skillPoints;
+    private int attack;
+    private int movements;
+    private int clankCubes;
+    private int gold;
+    private bool isUnstoppable;
+    private bool isPlaying;
+    private bool hasArtifact;
+
+
 
     void Update()
     {
