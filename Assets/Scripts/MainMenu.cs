@@ -11,14 +11,16 @@ public class MainMenu : MonoBehaviour
 
     private void Start()
     {
-        GameObject parent = GameObject.Find("Canvas");
-        optionMenu = Instantiate(optionMenuPrefab, parent.transform);
-        int resolutionIndex = PlayerPrefs.GetInt("resolution", -1);
-        if (resolutionIndex != -1)
+        InitializeResolution();
+    }
+
+    private void InitializeResolution()
+    {
+        optionMenu = Instantiate(optionMenuPrefab, GameObject.Find("Canvas").transform);
+        if (OptionsStorage.HasResolution())
         {
-            Debug.Log(resolutionIndex);
             optionMenu.GetComponent<OptionsMenu>().FirstResolutionSetup();
-            optionMenu.GetComponent<OptionsMenu>().SetResolution(resolutionIndex);
+            optionMenu.GetComponent<OptionsMenu>().SetResolution(OptionsStorage.GetResolution());
         }
     }
 
@@ -31,13 +33,10 @@ public class MainMenu : MonoBehaviour
     {
         cameFromMain = true;
         optionMenu.SetActive(true);
-        Debug.Log("loading options");
-    
     }
 
     public void QuitGame()
     {
-        Debug.Log("Quit");
         Application.Quit();
     }
 }

@@ -1,36 +1,48 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.Audio;
 
-public class OptionsStorage : MonoBehaviour
+public static class OptionsStorage
 {
-    public Dropdown resolutionDropdown;
+    private const string VOLUME_OPTION_NAME = "volume";
+    private const string GRAPHICS_OPTION_NAME = "graphics";
+    private const string RESOLUTION_OPTION_NAME = "resolution";
 
-    private void Start()
+    public static void SaveVolume(float volumeValue)
     {
-        LoadResolutionValue();
+        PlayerPrefs.SetFloat(VOLUME_OPTION_NAME, volumeValue);
     }
+    public static float GetVolume()
+    {
+        return PlayerPrefs.GetFloat(VOLUME_OPTION_NAME);
+    }
+
+
+    public static void SaveGraphics(int graphicsValue)
+    {
+        PlayerPrefs.SetInt(GRAPHICS_OPTION_NAME, graphicsValue);
+    }
+
+    public static int GetGraphics()
+    {
+        return PlayerPrefs.GetInt(GRAPHICS_OPTION_NAME);
+    }
+
 
 
     //Resolution dropdown and save&load values.
-    public void ResolutionDropdown(int resolution)
+    public static void SaveResolution(int resolutionValue)
     {
-        PlayerPrefs.SetInt("resolution", resolution);
+        PlayerPrefs.SetInt(RESOLUTION_OPTION_NAME, resolutionValue);
     }
 
-    public void SaveResolutionButton()
+    public static int GetResolution()
     {
-        int resolutionValue = resolutionDropdown.value;
-        PlayerPrefs.SetInt("resolution", resolutionValue);
-        LoadResolutionValue();
+        return PlayerPrefs.GetInt(RESOLUTION_OPTION_NAME);
     }
 
-    void LoadResolutionValue()
+    public static bool HasResolution()
     {
-        int resolutionValue = PlayerPrefs.GetInt("resolution");
-        resolutionDropdown.value = resolutionValue;
+        return PlayerPrefs.HasKey(RESOLUTION_OPTION_NAME);
     }
-
 }

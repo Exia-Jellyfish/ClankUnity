@@ -14,8 +14,7 @@ public class PauseMenu : MonoBehaviour
 
     private void Start()
     {
-        GameObject parent = GameObject.Find("Canvas");
-        optionMenu = Instantiate(optionMenuPrefab, parent.transform);
+        optionMenu = Instantiate(optionMenuPrefab, GameObject.Find("Canvas").transform);
     }
 
 
@@ -38,9 +37,9 @@ public class PauseMenu : MonoBehaviour
     {
         pauseMenuUI.SetActive(false);
         GameIsPaused = false;
-        Cursor.lockState = CursorLockMode.Locked;
         optionMenu.SetActive(false);
         InGameOptions = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
     void Pause()
     {
@@ -53,12 +52,10 @@ public class PauseMenu : MonoBehaviour
     {
         InGameOptions = true;
         optionMenu.SetActive(true);
-        Debug.Log("loading options");
     }
 
     public void QuitGame()
     {
-        Debug.Log("quitting game");
         Application.Quit();
     }
 

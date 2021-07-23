@@ -13,14 +13,15 @@ public class OptionsMenu : MonoBehaviour
     public Dropdown graphicsDropdown;
 
 
+
     Resolution[] resolutions;
 
     void Start()
     {
-        LoadVolumeValue();
-        LoadGraphicsValue();
         FirstResolutionSetup();
-        LoadResolutionValue();
+        LoadResolution(OptionsStorage.GetResolution());
+        LoadVolume(OptionsStorage.GetVolume());
+        LoadGraphics(OptionsStorage.GetGraphics());
     }
 
     public void FirstResolutionSetup()
@@ -58,30 +59,26 @@ public class OptionsMenu : MonoBehaviour
 
     public void SetVolume(float volume)
     {
-        PlayerPrefs.SetFloat("volume", volume);
         audioMixer.SetFloat("volume", volume);
     }
 
     public void SetQuality (int graphicsIndex)
     {
         QualitySettings.SetQualityLevel(graphicsIndex);
-        PlayerPrefs.SetInt("graphics", graphicsIndex);
     }
 
     public void BackButton()
     {
         if (MainMenu.cameFromMain == true)
         {
-            Debug.Log("78");
-            GameObject.Find("Canvas").transform.Find("MainMenu").gameObject.SetActive(true);
+            transform.root.Find("MainMenu").gameObject.SetActive(true);
             MainMenu.cameFromMain = false;
         }
         else
         {
-            Debug.Log("93");
-            GameObject.Find("Canvas").transform.Find("PauseMenu").gameObject.SetActive(true);
+            transform.root.Find("PauseMenu").gameObject.SetActive(true);
         }
-            gameObject.SetActive(false);
+        gameObject.SetActive(false);
     }
 
 
@@ -89,46 +86,33 @@ public class OptionsMenu : MonoBehaviour
     {
         PauseMenu.InGameOptions = false;
     }
-
-    //Saving and loading graphics prefs
-    public void SaveGraphicsButton()
+    public void SaveButton()
     {
-        int graphicsValue = graphicsDropdown.value;
-        PlayerPrefs.SetInt("graphics", graphicsValue);
-        LoadGraphicsValue();
+        OptionsStorage.SaveVolume(volumeSlider.value);
+        OptionsStorage.SaveGraphics(graphicsDropdown.value);
+        OptionsStorage.SaveResolution(resolutionDropdown.value);
     }
 
-    void LoadGraphicsValue()
-    {
-        int graphicsValue = PlayerPrefs.GetInt("graphics");
-        graphicsDropdown.value = graphicsValue;
-    }
 
-    //Saving and loading volume prefs
-    public void SaveVolumeButton()
+
+    //Loading volume
+    private void LoadVolume(float volumeValue)
     {
-        float volumeValue = volumeSlider.value;
-        PlayerPrefs.SetFloat("volume", volumeValue);
-        LoadVolumeValue();
-    }
-    void LoadVolumeValue()
-    {
-        float volumeValue = PlayerPrefs.GetFloat("volume");
         volumeSlider.value = volumeValue;
         audioMixer.SetFloat("volume", volumeValue);
     }
 
-    //Saving and loading resolution prefs
-    public void SaveResolutionButton()
+    //Saving and loading graphics prefs
+    private void LoadGraphics(int graphicsValue)
     {
-        int resolutionValue = resolutionDropdown.value;
-        PlayerPrefs.SetInt("resolution", resolutionValue);
-        LoadResolutionValue();
+        graphicsDropdown.value = graphicsValue;
     }
 
-    void LoadResolutionValue()
+    
+    //Loading resolution
+
+    private void LoadResolution(int resolutionIndex)
     {
-        int resolutionValue = PlayerPrefs.GetInt("resolution");
-        resolutionDropdown.value = resolutionValue;
+        resolutionDropdown.value = resolutionIndex;
     }
 }

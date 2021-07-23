@@ -13,7 +13,8 @@ public class PlayerController : MonoBehaviour
     private int skillPoints;
     private int attack;
     private int movements;
-    private int clankCubes;
+    private int clankCubes = 30;
+    private int clankCounter;
     private int gold;
     private bool isUnstoppable;
     private bool isPlaying;
