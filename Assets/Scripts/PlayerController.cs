@@ -10,15 +10,6 @@ public class PlayerController : MonoBehaviour
     private float playerSpeed = 2.0f;
     public float gravity = -9.81f;
     private float jumpHeight = 1.0f;
-    private int skillPoints;
-    private int attack;
-    private int movements;
-    private int clankCubes = 30;
-    private int clankCounter;
-    private int gold;
-    private bool isUnstoppable;
-    private bool isPlaying;
-    private bool hasArtifact;
 
 
 
@@ -45,6 +36,11 @@ public class PlayerController : MonoBehaviour
         if (Input.GetButtonDown("Jump") && groundedPlayer)
         {
             playerVelocity.y += Mathf.Sqrt(jumpHeight * -3.0f * gravity);
+            GameManager.GetInstance().Test();
+        }
+        if (Input.GetKeyDown(KeyCode.U))
+        {
+            GameManager.GetInstance().Test2();
         }
     }
 }
