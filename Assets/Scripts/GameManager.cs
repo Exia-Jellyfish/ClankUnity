@@ -4,11 +4,12 @@ using UnityEngine;
 
 public sealed class GameManager : MonoBehaviour
 {
-
     private static GameManager instance;
     private PlayerState[] playerStates;
     private int activePlayer = 0;
     private const int NUMBER_OF_PLAYERS = 4;
+    private int[] clankCounters;
+    public Bag bag;
 
     private void Start()
     {
@@ -43,7 +44,6 @@ public sealed class GameManager : MonoBehaviour
         {
             effect.Execute();
         }
-        Debug.Log(playerStates[activePlayer].ClankCounter);
         Debug.Log(playerStates[activePlayer].ClankCubes);
     }
 
@@ -52,13 +52,12 @@ public sealed class GameManager : MonoBehaviour
         CardData fauxpas = new CardData();
         fauxpas.cardEffects.AddRange(new List<CardEffect> {
             new AddClank(activePlayer, 9),
-            new AddClank(activePlayer, -7),
+            new RemoveClank(activePlayer, 7),
         });
         foreach (CardEffect effect in fauxpas.cardEffects)
         {
             effect.Execute();
         }
-        Debug.Log("ClankCounter " + playerStates[activePlayer].ClankCounter);
         Debug.Log("ClankCubes " + playerStates[activePlayer].ClankCubes);
     }
     public int GetActivePlayer()
@@ -69,8 +68,31 @@ public sealed class GameManager : MonoBehaviour
     // Main -> Terrain
     public void AddClankTo(int player, int number)
     {
-        Debug.Log(number);
-        playerStates[player].AddToClankCounter(number);
+        if (playerStates[player].ClankCubes >= number)
+        {
+            clankCounters[player] += number;
+            playerStates[player].ClankCubes -= number;
+        }
+        else
+        {
+            clankCounters[player] += playerStates[player].ClankCubes;
+            playerStates[player].ClankCubes = 0;
+        }
+    }
+
+    // Terrain -> Main    
+    public void RemoveClankFrom(int player, int number)
+    {
+        if (clankCounters[player] >= number)
+        {
+            clankCounters[player] -= number;
+            playerStates[player].ClankCubes += number;
+        }
+        else
+        {
+            playerStates[player].ClankCubes += clankCounters[player];
+            clankCounters[player] = 0;
+        }
     }
 
     // Vie -> Main
@@ -78,50 +100,48 @@ public sealed class GameManager : MonoBehaviour
     {
         if (playerStates[player].HealthMeter > 0 && playerStates[player].HealthMeter >= number)
         {
-            playerStates[player].AddClankCubes(number);
-            playerStates[player].RemoveFromHealthMeter(number);
+            playerStates[player].ClankCubes += number;
+            playerStates[player].HealthMeter -= number;
         }
         else
         {
+            playerStates[player].ClankCubes += playerStates[player].HealthMeter;
             playerStates[player].HealthMeter = 0;
         }
     }
 
-
-
     // Terrain -> Sac
-    public void TransferClankCubesToBag() 
+    public void TransferClankCubesToBag(int number) 
     {
-        
+        for (int i = 0; i < NUMBER_OF_PLAYERS; i++)
+        {
+            bag.PlayerCubes[i] += number;
+            clankCounters[i] = 0;
+        }
     }
     
-    // Terrain -> Main    
-    public void RemoveClankFrom(int player, int number)
-    {
-
-    }
 
     // Main -> Vie, Sac -> Vie
-    /*public void DealDamageTo(int player, int number, DamageSource source)
+    public void DealDamageTo(int player, int number, DamageSource source)
     {
         if (source == DamageSource.DRAGON)
         {
-            bag[player] -= number;
+            bag.PlayerCubes[player] -= number;
         }
         else if (source == DamageSource.MONSTER)
         {
-            if (playerStates.getClankCubes() < number)
+            if (playerStates[player].ClankCubes < number)
             {
-                number = player.getClankCubes();
-                player.setClankCubes(0);
+                number = playerStates[player].ClankCubes;
+                playerStates[player].ClankCubes = 0;
             }
             else
             {
-                player.removeClankCubes(number);
+                playerStates[player].ClankCubes -= number;
             }
         }
-        playerStates[player].AddToHealthMeter(number);
-    }*/
+        playerStates[player].HealthMeter += number;
+    }
 
 
 }
