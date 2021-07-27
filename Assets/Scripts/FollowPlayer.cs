@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class FollowPlayer : MonoBehaviour
 {
-    public float mouseSensitivity = 100f;
     public Transform playerBody;
-    float xRotation = 0f;
+    public float mouseSensitivity = 400f;
+
+    private float xRotation = 0f;
 
     // Start is called before the first frame update
     void Start()
-
     {
         Cursor.lockState = CursorLockMode.Locked;
     }
@@ -20,8 +20,8 @@ public class FollowPlayer : MonoBehaviour
     {
         //transform.position = playerBody.transform.position;
 
-        float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
-        float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
+        float mouseX = Input.GetAxis("Mouse X") * Time.deltaTime * mouseSensitivity;
+        float mouseY = Input.GetAxis("Mouse Y") * Time.deltaTime * mouseSensitivity;
 
         if (!PauseMenu.GameIsPaused)
         {

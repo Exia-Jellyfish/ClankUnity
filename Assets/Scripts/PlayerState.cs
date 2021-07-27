@@ -8,7 +8,7 @@ public class PlayerState
     private int movements;
     private int clankCubes = 30;
     private int clankCounter;
-    private int healthBar;
+    private int healthMeter;
     private int gold;
     private bool isUnstoppable;
     private bool isPlaying;
@@ -19,7 +19,7 @@ public class PlayerState
     public int Movements { get => movements; private set => movements = value; }
     public int ClankCubes { get => clankCubes; private set => clankCubes = value; }
     public int ClankCounter { get => clankCounter; private set => clankCounter = value; }
-    public int HealthBar { get => healthBar; private set => healthBar = value; }
+    public int HealthMeter { get => healthMeter; set => healthMeter = value; }
     public int Gold { get => gold; private set => gold = value; }
     public bool IsUnstoppable { get => isUnstoppable; private set => isUnstoppable = value; }
     public bool IsPlaying { get => isPlaying; private set => isPlaying = value; }
@@ -57,14 +57,14 @@ public class PlayerState
 
     }
 
-    public void AddToHealthBar(int value)
+    public void AddToHealthMeter(int value)
     {
         if (value > 0)
         {
-            if (HealthBar < 10 && ClankCubes >= value)
+            if (HealthMeter < 10 && ClankCubes >= value)
             {
                 ClankCubes += value;
-                HealthBar += value;
+                HealthMeter += value;
             }
             else
             {
@@ -72,6 +72,17 @@ public class PlayerState
             }
         }
     }
+
+    public void AddClankCubes (int value)
+    {
+        ClankCubes += value;
+    }
+
+    public void RemoveFromHealthMeter (int value)
+    {
+        HealthMeter -= value;        
+    }
+
     //private bool isActive;
 
 

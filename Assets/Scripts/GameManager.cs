@@ -66,15 +66,62 @@ public sealed class GameManager : MonoBehaviour
         return activePlayer;
     }
 
+    // Main -> Terrain
     public void AddClankTo(int player, int number)
     {
         Debug.Log(number);
         playerStates[player].AddToClankCounter(number);
     }
 
-    public void AddHealthTo(int player, int number)
+    // Vie -> Main
+    public void HealPlayer(int player, int number)
     {
-        Debug.Log(number);
-        playerStates[player].AddToHealthBar(number);
+        if (playerStates[player].HealthMeter > 0 && playerStates[player].HealthMeter >= number)
+        {
+            playerStates[player].AddClankCubes(number);
+            playerStates[player].RemoveFromHealthMeter(number);
+        }
+        else
+        {
+            playerStates[player].HealthMeter = 0;
+        }
     }
+
+
+
+    // Terrain -> Sac
+    public void TransferClankCubesToBag() 
+    {
+        
+    }
+    
+    // Terrain -> Main    
+    public void RemoveClankFrom(int player, int number)
+    {
+
+    }
+
+    // Main -> Vie, Sac -> Vie
+    /*public void DealDamageTo(int player, int number, DamageSource source)
+    {
+        if (source == DamageSource.DRAGON)
+        {
+            bag[player] -= number;
+        }
+        else if (source == DamageSource.MONSTER)
+        {
+            if (playerStates.getClankCubes() < number)
+            {
+                number = player.getClankCubes();
+                player.setClankCubes(0);
+            }
+            else
+            {
+                player.removeClankCubes(number);
+            }
+        }
+        playerStates[player].AddToHealthMeter(number);
+    }*/
+
+
 }
