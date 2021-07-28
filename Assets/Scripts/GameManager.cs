@@ -7,9 +7,9 @@ public sealed class GameManager : MonoBehaviour
     private static GameManager instance;
     private PlayerState[] playerStates;
     private int activePlayer = 0;
-    private const int NUMBER_OF_PLAYERS = 4;
+    public const int NUMBER_OF_PLAYERS = 4;
     private int[] clankCounters;
-    public Bag bag;
+    private Bag bag;
 
     private void Start()
     {
@@ -27,6 +27,8 @@ public sealed class GameManager : MonoBehaviour
         {
             playerStates[i] = new PlayerState();
         }
+        clankCounters = new int[NUMBER_OF_PLAYERS];
+        bag = new Bag();
     }
 
     public static GameManager GetInstance()
@@ -39,6 +41,7 @@ public sealed class GameManager : MonoBehaviour
         fauxpas.cardEffects.AddRange(new List<CardEffect> {
             new AddClank(activePlayer, 5),
             new AddClank(activePlayer, -7),
+
         });
         foreach (CardEffect effect in fauxpas.cardEffects)
         {
@@ -53,12 +56,16 @@ public sealed class GameManager : MonoBehaviour
         fauxpas.cardEffects.AddRange(new List<CardEffect> {
             new AddClank(activePlayer, 9),
             new RemoveClank(activePlayer, 7),
+            new HealPlayer(activePlayer, 1),
+            new DamagePlayer(activePlayer, 2, DamageSource.DRAGON),
         });
         foreach (CardEffect effect in fauxpas.cardEffects)
         {
             effect.Execute();
         }
         Debug.Log("ClankCubes " + playerStates[activePlayer].ClankCubes);
+        Debug.Log("health : " + playerStates[activePlayer].HealthMeter);
+
     }
     public int GetActivePlayer()
     {
@@ -120,9 +127,8 @@ public sealed class GameManager : MonoBehaviour
         }
     }
     
-
     // Main -> Vie, Sac -> Vie
-    public void DealDamageTo(int player, int number, DamageSource source)
+    public void DamagePlayer(int player, int number, DamageSource source)
     {
         if (source == DamageSource.DRAGON)
         {
@@ -143,5 +149,22 @@ public sealed class GameManager : MonoBehaviour
         playerStates[player].HealthMeter += number;
     }
 
+    // SkillPoints
 
+    public void AddSkillPointTo(int player, int number)
+    {
+        playerStates[player].SkillPoints += number;
+    }
+
+    // Movement
+    public void AddMovementTo(int player, int number)
+    {
+        playerStates[player].Movement += number;
+    }
+
+    // SetUnstoppable
+    public void SetUnstoppableTo(int player, bool value)
+    {
+        playerStates[player].IsUnstoppable = value;
+    }
 }
