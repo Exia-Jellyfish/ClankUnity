@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    private int id = 0;
     public CharacterController controller;
     public Vector3 playerVelocity;
     private bool groundedPlayer;
@@ -11,7 +12,7 @@ public class PlayerController : MonoBehaviour
     public float gravity = -9.81f;
     private float jumpHeight = 1.0f;
 
-
+    public int Id { get => id;}
 
     void Update()
     {
@@ -36,7 +37,6 @@ public class PlayerController : MonoBehaviour
         if (Input.GetButtonDown("Jump") && groundedPlayer)
         {
             playerVelocity.y += Mathf.Sqrt(jumpHeight * -3.0f * gravity);
-            GameManager.GetInstance().Test();
         }
         if (Input.GetKeyDown(KeyCode.U))
         {

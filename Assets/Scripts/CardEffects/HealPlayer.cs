@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 public class HealPlayer : CardEffect
 {
-    private int number;
+    public int number;
 
     public HealPlayer(int player, int number) : base(player)
     {

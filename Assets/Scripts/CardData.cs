@@ -1,9 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
 
-public class CardData
+public class CardData : MonoBehaviour
 {
-    public List<CardEffect> cardEffects = new List<CardEffect>();
-
-
+    public int victoryPoints = 0;
+    public int attackCost = 0;
+    public int skillPointCost = 0;
 }

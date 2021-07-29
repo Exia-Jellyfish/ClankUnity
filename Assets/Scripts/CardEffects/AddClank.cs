@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class AddClank : CardEffect
 {
-    private int number;
+    public int number;
 
     public AddClank(int player, int number) : base(player)
     {

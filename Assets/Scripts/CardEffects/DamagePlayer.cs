@@ -3,8 +3,8 @@ using System.Collections.Generic;
 
 public class DamagePlayer : CardEffect
 {
-    private int number;
-    private DamageSource source;
+    public int number;
+    public DamageSource source;
 
     public DamagePlayer(int player, int number, DamageSource source) : base(player)
     {

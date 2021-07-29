@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 public class AddMovement : CardEffect
 {
-    private int number;
+    public int number;
 
     public AddMovement(int player, int number) : base(player)
     {

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class RemoveClank : CardEffect
 {
-    private int number;
+    public int number;
 
     public RemoveClank(int player, int number) : base(player)
     {

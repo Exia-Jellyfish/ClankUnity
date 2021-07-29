@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public sealed class GameManager : MonoBehaviour
+public sealed class GameManager
 {
     private static GameManager instance;
     private PlayerState[] playerStates;
@@ -11,13 +11,14 @@ public sealed class GameManager : MonoBehaviour
     private int[] clankCounters;
     private Bag bag;
 
-    private void Start()
+    private PlayerController playerController;
+
+    public int ActivePlayer { get => activePlayer; }
+    public PlayerController PlayerController { get => playerController; }
+
+    public PlayerState GetActivePlayerState()
     {
-        if (instance != null && instance != this)
-        {
-            Destroy(gameObject);
-        }
-        instance = this;
+        return playerStates[activePlayer];
     }
 
     private GameManager()
@@ -29,44 +30,28 @@ public sealed class GameManager : MonoBehaviour
         }
         clankCounters = new int[NUMBER_OF_PLAYERS];
         bag = new Bag();
+
+        playerController = GameObject.Find("Player").GetComponent<PlayerController>();
     }
 
     public static GameManager GetInstance()
     {
-        return instance;
-    }
-
-    public void Test() {
-        CardData fauxpas = new CardData();
-        fauxpas.cardEffects.AddRange(new List<CardEffect> {
-            new AddClank(activePlayer, 5),
-            new AddClank(activePlayer, -7),
-
-        });
-        foreach (CardEffect effect in fauxpas.cardEffects)
+        if (instance == null)
         {
-            effect.Execute();
+            instance = new GameManager();
         }
-        Debug.Log(playerStates[activePlayer].ClankCubes);
+        return instance;
     }
 
     public void Test2()
     {
-        CardData fauxpas = new CardData();
-        fauxpas.cardEffects.AddRange(new List<CardEffect> {
-            new AddClank(activePlayer, 9),
-            new RemoveClank(activePlayer, 7),
-            new HealPlayer(activePlayer, 1),
-            new DamagePlayer(activePlayer, 2, DamageSource.DRAGON),
-        });
-        foreach (CardEffect effect in fauxpas.cardEffects)
-        {
-            effect.Execute();
+        GameObject mrmoustache = GameObject.Find("Lasagne");
+        PlayCard(mrmoustache);
+        
+        Debug.Log("Skillpoints " + playerStates[activePlayer].Skillpoints);
+        Debug.Log("Gold" + playerStates[activePlayer].Gold);
+        Debug.Log("attack" + playerStates[activePlayer].Attack);
         }
-        Debug.Log("ClankCubes " + playerStates[activePlayer].ClankCubes);
-        Debug.Log("health : " + playerStates[activePlayer].HealthMeter);
-
-    }
     public int GetActivePlayer()
     {
         return activePlayer;
@@ -149,11 +134,19 @@ public sealed class GameManager : MonoBehaviour
         playerStates[player].HealthMeter += number;
     }
 
-    // SkillPoints
-
-    public void AddSkillPointTo(int player, int number)
+    public void PlayCard(GameObject card)
     {
-        playerStates[player].SkillPoints += number;
+        foreach (CardEffect effect in card.GetComponents<CardEffect>())
+        {
+            effect.Execute();
+        }
+    }
+
+    // Skillpoints
+
+    public void AddSkillpointTo(int player, int number)
+    {
+        playerStates[player].Skillpoints += number;
     }
 
     // Movement
@@ -166,5 +159,17 @@ public sealed class GameManager : MonoBehaviour
     public void SetUnstoppableTo(int player, bool value)
     {
         playerStates[player].IsUnstoppable = value;
+    }
+
+    //AddAttack to a player
+    public void AddAttackTo(int player, int number)
+    {
+        playerStates[player].Attack += number;
+    }
+
+    //AddGold to a player
+    public void AddGoldTo(int player, int number)
+    {
+        playerStates[player].Gold += number;
     }
 }
