@@ -42,14 +42,5 @@ public class PlayerController : MonoBehaviour
         {
             GameManager.GetInstance().Test();
         }
-
-        if (Input.GetKeyDown(KeyCode.J))
-        {
-            Deck deck = GameObject.Find("Homer").GetComponent<Deck>();
-            deck.AddCard(GameObject.Find("Gandalf"));
-            deck.Shuffle();
-            GameObject cardRemoved = deck.RemoveCard();
-            deck.DebugLog();
-        }
     }
 }
