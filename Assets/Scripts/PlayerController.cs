@@ -40,7 +40,7 @@ public class PlayerController : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.U))
         {
-            GameManager.GetInstance().Test2();
+            GameManager.GetInstance().Test();
         }
     }
 }

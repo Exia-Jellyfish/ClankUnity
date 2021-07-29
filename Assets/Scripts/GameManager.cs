@@ -43,7 +43,7 @@ public sealed class GameManager
         return instance;
     }
 
-    public void Test2()
+    public void Test()
     {
         GameObject mrmoustache = GameObject.Find("Lasagne");
         PlayCard(mrmoustache);

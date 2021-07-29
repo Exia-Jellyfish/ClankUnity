@@ -11,10 +11,12 @@ public class PauseMenu : MonoBehaviour
     public GameObject pauseMenuUI;
     public GameObject optionMenuPrefab;
     private GameObject optionMenu;
+    private GameObject crosshair;
 
     private void Start()
     {
         optionMenu = Instantiate(optionMenuPrefab, GameObject.Find("Canvas").transform);
+        crosshair = GameObject.Find("Crosshair");
     }
 
 
@@ -40,12 +42,14 @@ public class PauseMenu : MonoBehaviour
         optionMenu.SetActive(false);
         InGameOptions = false;
         Cursor.lockState = CursorLockMode.Locked;
+        crosshair.SetActive(true);
     }
     void Pause()
     {
         Cursor.lockState = CursorLockMode.Confined;
         pauseMenuUI.SetActive(true);
         GameIsPaused = true;
+        crosshair.SetActive(false);
     }
 
     public void OptionsMenu()
