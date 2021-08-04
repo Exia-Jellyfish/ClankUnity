@@ -2,14 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BuyHandler : MonoBehaviour
+public class ClickHandler : MonoBehaviour
 {
     private GameObject card;
     private CardData data;
 
     public void Awake()
     {
-        card = transform.root.gameObject;
+        card = gameObject;
         data = card.GetComponent<CardData>();
     }
 
@@ -21,16 +21,15 @@ public class BuyHandler : MonoBehaviour
         PlayerState player = GameManager.GetInstance().GetActivePlayerState();
 
         // If player has the amount to buy a card
-        if (player.Skillpoints >= data.skillPointCost && player.Attack >= data.attackCost)
+        if (player.Skillpoints >= data.skillPointCost && player.Attack >= data.attackCost && data.isInShop == true)
         {
             player.Skillpoints -= data.skillPointCost;
             player.Attack -= data.attackCost;
-
-            // TODO : Add the card to the discard pile
-            GameManager.GetInstance().PlayCard(card);
-            Debug.Log("Carte gandalf jouée");
+            GameManager.GetInstance().AddToPlayerDiscard(card);
+            data.isInShop = false;
+            Debug.Log("Carte achetée et ajoutée à la défausse !");
             return;
         }
-        Debug.Log("carte non jouée");
+        Debug.Log("carte non achetée");
     }
 }

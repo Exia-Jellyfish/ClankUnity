@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public sealed class GameManager
+public sealed class GameManager : MonoBehaviour
 {
     private static GameManager instance;
     private PlayerState[] playerStates;
@@ -21,7 +21,7 @@ public sealed class GameManager
         return playerStates[activePlayer];
     }
 
-    private GameManager()
+    private void Awake()
     {
         playerStates = new PlayerState[NUMBER_OF_PLAYERS];
         for (int i = 0; i < NUMBER_OF_PLAYERS; i++)
@@ -32,14 +32,11 @@ public sealed class GameManager
         bag = new Bag();
 
         playerController = GameObject.Find("Player").GetComponent<PlayerController>();
+        instance = this;
     }
 
     public static GameManager GetInstance()
     {
-        if (instance == null)
-        {
-            instance = new GameManager();
-        }
         return instance;
     }
 
@@ -171,5 +168,30 @@ public sealed class GameManager
     public void AddGoldTo(int player, int number)
     {
         playerStates[player].Gold += number;
+    }
+
+    //Add a card to the discard pile of a player
+    public void AddToPlayerDiscard (GameObject card)
+    {
+        GameObject.Find("Defausse").GetComponent<Deck>().AddCard(card);
+        card.SetActive(false);
+    }
+
+    public void Draw()
+    {
+        Deck deck = GameObject.Find("Deck").GetComponent<Deck>();
+        Deck discard = GameObject.Find("Defausse").GetComponent<Deck>();
+        if (deck.Count == 0)
+        {
+            if (discard.Count == 0)
+            {
+                return;
+            }
+            discard.Shuffle();
+            deck.Load(discard);
+            discard.Clear();
+        }
+        GameObject card = deck.RemoveCard();
+        card.SetActive(true);
     }
 }

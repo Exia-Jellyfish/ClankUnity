@@ -7,6 +7,8 @@ public class Deck : MonoBehaviour
 {
     public List<GameObject> cards = new List<GameObject>();
 
+    public int Count { get => cards.Count; }
+
     public void AddCard(GameObject card)
     {
         cards.Add(card);
@@ -30,6 +32,20 @@ public class Deck : MonoBehaviour
             cards[i] = go;
         }
 
+    }
+
+    public void Clear()
+    {
+        cards.Clear();
+    }
+
+
+    public void Load(Deck deck)
+    {
+        foreach(GameObject card in deck.cards)
+        {
+            cards.Add(card);
+        }
     }
 
     public void DebugLog()
