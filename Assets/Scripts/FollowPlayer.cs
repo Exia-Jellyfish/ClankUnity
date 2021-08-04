@@ -6,7 +6,6 @@ public class FollowPlayer : MonoBehaviour
 {
     public Transform playerBody;
     public float mouseSensitivity = 400f;
-
     private float xRotation = 0f;
 
     // Start is called before the first frame update
@@ -30,6 +29,15 @@ public class FollowPlayer : MonoBehaviour
 
             transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
             playerBody.Rotate(Vector3.up * mouseX);
+        }
+
+        if (Input.GetMouseButtonDown(1))
+        {
+            Camera.main.fieldOfView /= 3;
+        }
+        else if (Input.GetMouseButtonUp(1))
+        {
+            Camera.main.fieldOfView *= 3;
         }
     }
 }
