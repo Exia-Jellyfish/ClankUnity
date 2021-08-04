@@ -122,9 +122,10 @@ public sealed class GameManager : MonoBehaviour
     // Main -> Vie, Sac -> Vie
     public void DamagePlayer(int player, int number, DamageSource source)
     {
+        //TODO : Update the healthMeter when taking damage.
         if (source == DamageSource.DRAGON)
         {
-            bag.PlayerCubes[player] -= number;
+            Application.Quit();
         }
         else if (source == DamageSource.MONSTER)
         {
@@ -186,10 +187,15 @@ public sealed class GameManager : MonoBehaviour
         deckManager.Discard(player, card);
     }
 
+    //Draw a card from the player deck
     public void Draw(int player, int number = 1)
     {
         deckManager.Draw(player, number);
     }
 
-    
+    //Pick up a cube in the bag on a dragon attack
+    public void DragonAttack(int dragonRage)
+    {
+        bag.PickCubes(dragonRage);
+    }
 }
