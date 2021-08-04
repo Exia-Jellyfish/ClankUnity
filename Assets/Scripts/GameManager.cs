@@ -10,6 +10,10 @@ public sealed class GameManager : MonoBehaviour
     public const int NUMBER_OF_PLAYERS = 4;
     private int[] clankCounters;
     private Bag bag;
+    private DeckManager deckManager;
+    public GameObject deckPrefab;
+    public GameObject discardPrefab;
+
 
     private PlayerController playerController;
 
@@ -23,16 +27,22 @@ public sealed class GameManager : MonoBehaviour
 
     private void Awake()
     {
+        Deck[] decks = new Deck[NUMBER_OF_PLAYERS];
+        Deck[] discards = new Deck[NUMBER_OF_PLAYERS];
         playerStates = new PlayerState[NUMBER_OF_PLAYERS];
         for (int i = 0; i < NUMBER_OF_PLAYERS; i++)
         {
             playerStates[i] = new PlayerState();
+            decks[i] = Instantiate(deckPrefab).GetComponent<Deck>();
+            discards[i] = Instantiate(discardPrefab).GetComponent<Deck>();
         }
+        deckManager = new DeckManager(decks, discards);
         clankCounters = new int[NUMBER_OF_PLAYERS];
         bag = new Bag();
-
         playerController = GameObject.Find("Player").GetComponent<PlayerController>();
+        
         instance = this;
+
     }
 
     public static GameManager GetInstance()
@@ -171,27 +181,15 @@ public sealed class GameManager : MonoBehaviour
     }
 
     //Add a card to the discard pile of a player
-    public void AddToPlayerDiscard (GameObject card)
+    public void AddToPlayerDiscard (int player, GameObject card)
     {
-        GameObject.Find("Defausse").GetComponent<Deck>().AddCard(card);
-        card.SetActive(false);
+        deckManager.Discard(player, card);
     }
 
-    public void Draw()
+    public void Draw(int player, int number = 1)
     {
-        Deck deck = GameObject.Find("Deck").GetComponent<Deck>();
-        Deck discard = GameObject.Find("Defausse").GetComponent<Deck>();
-        if (deck.Count == 0)
-        {
-            if (discard.Count == 0)
-            {
-                return;
-            }
-            discard.Shuffle();
-            deck.Load(discard);
-            discard.Clear();
-        }
-        GameObject card = deck.RemoveCard();
-        card.SetActive(true);
+        deckManager.Draw(player, number);
     }
+
+    
 }

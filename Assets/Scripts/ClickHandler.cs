@@ -25,7 +25,7 @@ public class ClickHandler : MonoBehaviour
         {
             player.Skillpoints -= data.skillPointCost;
             player.Attack -= data.attackCost;
-            GameManager.GetInstance().AddToPlayerDiscard(card);
+            GameManager.GetInstance().AddToPlayerDiscard(0, card);
             data.isInShop = false;
             Debug.Log("Carte achetée et ajoutée à la défausse !");
             return;

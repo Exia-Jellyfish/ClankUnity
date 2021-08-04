@@ -44,7 +44,7 @@ public class PlayerController : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.T))
         {
-            GameManager.GetInstance().Draw();
+            GameManager.GetInstance().Draw(0);
         }
     }
 }
