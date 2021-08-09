@@ -34,10 +34,12 @@ public class FollowPlayer : MonoBehaviour
         if (Input.GetMouseButtonDown(1))
         {
             Camera.main.fieldOfView /= 3;
+            mouseSensitivity /= 2;
         }
         else if (Input.GetMouseButtonUp(1))
         {
             Camera.main.fieldOfView *= 3;
+            mouseSensitivity *= 2;
         }
     }
 }
