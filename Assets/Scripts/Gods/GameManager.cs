@@ -52,12 +52,11 @@ public sealed class GameManager : MonoBehaviour
 
     public void Test()
     {
-        Graph graph = new Graph();
+        ClankGraph graph = new ClankGraph();
         Node node1 = new Node(1);
         Node node2 = new Node(2);
         Node node3 = new Node(3);
         Node node4 = new Node(4);
-
 
         Edge edge1 = new Edge(node1, node2);
         Edge edge2 = new Edge(node1, node3);
