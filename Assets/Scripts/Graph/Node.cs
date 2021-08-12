@@ -2,20 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Node : MonoBehaviour
+public class Node<T> : MonoBehaviour
 {
-    protected List<Edge> edges;
+    protected List<Edge<T>> edges;
     protected int id;
 
     public Node(int id)
     {
-        edges = new List<Edge>();
+        edges = new List<Edge<T>>();
         this.id = id;
     }
 
     public int Id { get => id; set => id = value; }
 
-    public void AddEdge(Edge edge)
+    public void AddEdge(Edge<T> edge)
     {
         edges.Add(edge);
     }
@@ -23,7 +23,7 @@ public class Node : MonoBehaviour
     public override string ToString()
     {
         string s = "Node " + id + ": [";
-        foreach(Edge edge in edges)
+        foreach(Edge<T> edge in edges)
         {
             s += edge.ToString() + ", ";
         }

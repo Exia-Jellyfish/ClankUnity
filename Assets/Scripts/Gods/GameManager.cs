@@ -10,6 +10,7 @@ public sealed class GameManager : MonoBehaviour
     public const int NUMBER_OF_PLAYERS = 4;
     private int[] clankCounters;
     private Bag bag;
+    private BoardManager boardManager;
     private DeckManager deckManager;
     public GameObject deckPrefab;
     public GameObject discardPrefab;
@@ -40,7 +41,9 @@ public sealed class GameManager : MonoBehaviour
         clankCounters = new int[NUMBER_OF_PLAYERS];
         bag = new Bag();
         playerController = GameObject.Find("Player").GetComponent<PlayerController>();
-        
+        boardManager = new BoardManager();
+
+
         instance = this;
 
     }
@@ -52,29 +55,7 @@ public sealed class GameManager : MonoBehaviour
 
     public void Test()
     {
-        ClankGraph graph = new ClankGraph();
-        Node node1 = new Node(1);
-        Node node2 = new Node(2);
-        Node node3 = new Node(3);
-        Node node4 = new Node(4);
 
-        Edge edge1 = new Edge(node1, node2);
-        Edge edge2 = new Edge(node1, node3);
-        Edge edge3 = new Edge(node3, node2);
-        Edge edge4 = new Edge(node3, node4);
-        Edge edge5 = new Edge(node4, node3);
-
-        graph.AddNode(node1);
-        graph.AddNode(node2);
-        graph.AddNode(node3);
-        graph.AddNode(node4);
-        graph.AddEdge(edge1);
-        graph.AddEdge(edge2);
-        graph.AddEdge(edge3);
-        graph.AddEdge(edge4);
-        graph.AddEdge(edge5);
-
-        graph.Debug();
     }
     public int GetActivePlayer()
     {

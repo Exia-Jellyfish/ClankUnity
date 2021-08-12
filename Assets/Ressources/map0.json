@@ -1,6 +1,1 @@
-{
-	"TileState" : "NONE",
-	"TileType" : "NONE",
-	"SecretToken" : [],
-	Artifact
-}
+{"startTile":{"instanceID":23242},"endTile":{"instanceID":23600},"movementCost":1,"attackCost":0,"isLocked":false}

@@ -2,23 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Edge : MonoBehaviour
+public class Edge<T> : MonoBehaviour
 {
-    protected Node startNode;
-    protected Node endNode;
+    protected Node<T> startNode;
+    protected Node<T> endNode;
 
-    public Edge(Node startNode, Node endNode)
-    {
-        this.startNode = startNode;
-        this.endNode = endNode;
-    }
+    public Node<T> StartNode { get => startNode; }
+    public Node<T> EndNode { get => endNode; }
 
-    public Node StartNode { get => startNode;}
-    public Node EndNode { get => endNode;}
-
-    public override string ToString()
+    /*public override string ToString()
     {
         string s = "(" + startNode.Id + " -> " + endNode.Id + ")";
         return s;
-    }
+    }*/
 }

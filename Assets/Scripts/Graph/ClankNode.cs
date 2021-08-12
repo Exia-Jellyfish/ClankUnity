@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ClankNode : Node
+public class ClankNode : Node<ClankNode>
 {
     public ClankNode(int id) : base(id)
     {
@@ -28,4 +28,11 @@ public class ClankNode : Node
     public SecretToken[] secrets;
     public Artifact artifact;
     public int monkeys;
+    public bool isUnderGround;
+
+
+    public void Sheet()
+    {
+        Debug.Log("cheat");
+    }
 }

@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 2582956505716109611}
   - component: {fileID: 1775918778076854478}
   - component: {fileID: 5368896176467063218}
-  - component: {fileID: -1541283128393236300}
   - component: {fileID: -1472425268960119491}
   - component: {fileID: -1581448559546094081}
   - component: {fileID: -4220488117018000345}
+  - component: {fileID: -860880450170081679}
   m_Layer: 0
   m_Name: Tile
   m_TagString: Untagged
@@ -57,18 +57,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &-1541283128393236300
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4196343040880728298}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c0a32b10f566dc34f8b6aff4443741f1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!54 &-1472425268960119491
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -141,3 +129,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &-860880450170081679
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4196343040880728298}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78378822ce4217c4e8a9005cfce9575d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  state: 0
+  type: 0
+  secrets: []
+  artifact: {fileID: 0}
+  monkeys: 0
