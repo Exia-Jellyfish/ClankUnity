@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Edge
+public class Edge : MonoBehaviour
 {
-    private Node startNode;
-    private Node endNode;
+    protected Node startNode;
+    protected Node endNode;
 
     public Edge(Node startNode, Node endNode)
     {

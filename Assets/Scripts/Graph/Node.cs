@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Node
+public class Node : MonoBehaviour
 {
-    private List<Edge> edges;
-    private int id;
+    protected List<Edge> edges;
+    protected int id;
 
     public Node(int id)
     {

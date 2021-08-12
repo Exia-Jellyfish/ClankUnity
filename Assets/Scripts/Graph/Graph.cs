@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Graph
 {
-    private List<Node> nodes;
-    private List<Edge> edges;
+    protected List<Node> nodes;
+    protected List<Edge> edges;
     public Graph()
     {
         nodes = new List<Node>();
