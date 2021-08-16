@@ -4,18 +4,18 @@ using UnityEngine;
 
 public class Edge : MonoBehaviour
 {
-    protected Node startNode;
-    protected Node endNode;
+    private int startNodeId;
+    private int endNodeId;
     private bool isDirected;
-    public Node StartNode { get => startNode; }
-    public Node EndNode { get => endNode; }
+    public int StartNodeId { get => startNodeId; set => startNodeId = value; }
+    public int EndNodeId { get => endNodeId; set => endNodeId = value; }
     public bool IsDirected { get => isDirected; }
 
-/*    public Edge(Node startNode, Node endNode)
-    {
-        this.startNode = startNode;
-        this.endNode = endNode;
-    }*/
+    /*    public Edge(Node startNode, Node endNode)
+        {
+            this.startNode = startNode;
+            this.endNode = endNode;
+        }*/
 
     /*public override string ToString()
     {

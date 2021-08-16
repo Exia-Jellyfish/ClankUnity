@@ -7,15 +7,15 @@ public class ClankGraph : Graph
     public ClankGraph() : base()
     {
         GameObject tiles = GameObject.Find("Tiles");
-        foreach (Transform transform in tiles.transform.GetComponentsInChildren<Transform>())
+        for (int i = 0; i < tiles.transform.childCount; i++)
         {
-            AddNode(transform.gameObject.GetComponent<ClankNode>());
+            AddNode(tiles.transform.GetChild(i).gameObject.GetComponent<ClankNode>());
         }
 
         GameObject edges = GameObject.Find("Edges");
-        foreach (Transform transform in edges.transform.GetComponentsInChildren<Transform>())
+        for (int i = 0; i < edges.transform.childCount; i++)
         {
-            AddEdge(transform.gameObject.GetComponent<ClankEdge>());
+            AddEdge(edges.transform.GetChild(i).gameObject.GetComponent<ClankEdge>());
         }
 
     }

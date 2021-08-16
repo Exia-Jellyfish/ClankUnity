@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Node : MonoBehaviour
 {
-    protected List<Edge> edges;
-    protected int id;
+    private List<Edge> edges;
+    public int id;
 
     /*public Node(int id)
     {
@@ -13,7 +13,13 @@ public class Node : MonoBehaviour
         this.id = id;
     }*/
 
+    private void Awake()
+    {
+        edges = new List<Edge>();
+    }
+
     public int Id { get => id; set => id = value; }
+    public List<Edge> Edges { get => edges; }
 
     public void AddEdge(Edge edge)
     {
@@ -24,7 +30,7 @@ public class Node : MonoBehaviour
     public List<Node> FindAdjacentNodes()
     {
         List<Node> adjacentNodes = new List<Node>();
-        foreach (Edge edge in edges)
+        foreach (Edge edge in Edges)
         {
             if (edge.StartNode.id == id)
             {
@@ -41,7 +47,7 @@ public class Node : MonoBehaviour
     public List<Node> FindDirectedAdjacentNodes()
     {
         List<Node> adjacentNodes = new List<Node>();
-        foreach(Edge edge in edges)
+        foreach(Edge edge in Edges)
         {
             // isStartNode  isDirected  Resultat
             //      0           0       Add(startNode)    
@@ -63,7 +69,7 @@ public class Node : MonoBehaviour
     public override string ToString()
     {
         string s = "Node " + id + ": [";
-        foreach(Edge edge in edges)
+        foreach(Edge edge in Edges)
         {
             s += edge.ToString() + ", ";
         }

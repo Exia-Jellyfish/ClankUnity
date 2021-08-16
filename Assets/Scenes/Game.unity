@@ -2590,6 +2590,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1571998857, guid: ead348feea4bd5546ae127e0c1295756, type: 3}
+      propertyPath: m_Name
+      value: Edges
+      objectReference: {fileID: 0}
     - target: {fileID: 2665216943020936586, guid: ead348feea4bd5546ae127e0c1295756, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -2652,6 +2656,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7687626725440666122, guid: ead348feea4bd5546ae127e0c1295756, type: 3}
       propertyPath: secrets.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8362491586343735994, guid: ead348feea4bd5546ae127e0c1295756, type: 3}
+      propertyPath: id
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
