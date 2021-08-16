@@ -58,7 +58,13 @@ public sealed class GameManager : MonoBehaviour
         ClankGraph graph = new ClankGraph();
 
         graph.Debug();
-        
+
+        foreach (Node node in graph.FindAdjacentNodes(graph.GetNode(3)))
+        {
+            Debug.Log(node.ToString());
+
+        }
+
     }
     public int GetActivePlayer()
     {

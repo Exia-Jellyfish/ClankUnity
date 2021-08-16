@@ -25,47 +25,6 @@ public class Node : MonoBehaviour
     {
         edges.Add(edge);
     }
-
-
-    public List<Node> FindAdjacentNodes()
-    {
-        List<Node> adjacentNodes = new List<Node>();
-        foreach (Edge edge in Edges)
-        {
-            if (edge.StartNode.id == id)
-            {
-                adjacentNodes.Add(edge.EndNode);
-            }
-            else
-            {
-                adjacentNodes.Add(edge.StartNode);
-            }
-        }
-        return adjacentNodes;
-
-    }
-    public List<Node> FindDirectedAdjacentNodes()
-    {
-        List<Node> adjacentNodes = new List<Node>();
-        foreach(Edge edge in Edges)
-        {
-            // isStartNode  isDirected  Resultat
-            //      0           0       Add(startNode)    
-            //      0           1       rien
-            //      1           0       Add(endNode)
-            //      1           1       Add(endNode)
-            if (edge.StartNode.id == id)
-            {
-                adjacentNodes.Add(edge.EndNode);
-            }
-            else if (!edge.IsDirected)
-            {
-                adjacentNodes.Add(edge.StartNode);
-            }
-        }
-        return adjacentNodes;
-    }
-
     public override string ToString()
     {
         string s = "Node " + id + ": [";

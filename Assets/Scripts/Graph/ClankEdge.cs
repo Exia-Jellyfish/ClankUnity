@@ -9,8 +9,8 @@ public class ClankEdge : Edge
 
     private void Awake()
     {
-        startNode = startTile.GetComponent<ClankNode>();
-        endNode = endTile.GetComponent<ClankNode>();
+        startNodeId = startTile.GetComponent<ClankNode>().id;
+        endNodeId = endTile.GetComponent<ClankNode>().id;
     }
 
 

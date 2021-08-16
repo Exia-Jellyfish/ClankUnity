@@ -7,7 +7,7 @@ public class BoardManager
     private ClankGraph graph;
     public BoardManager()
     {
-        graph = new ClankGraph();
+
     }
 
 }
