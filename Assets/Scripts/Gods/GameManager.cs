@@ -55,7 +55,10 @@ public sealed class GameManager : MonoBehaviour
 
     public void Test()
     {
+        ClankGraph graph = new ClankGraph();
 
+        graph.Debug();
+        
     }
     public int GetActivePlayer()
     {

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ClankGraph : Graph<ClankNode>
+public class ClankGraph : Graph
 {
     public ClankGraph() : base()
     {

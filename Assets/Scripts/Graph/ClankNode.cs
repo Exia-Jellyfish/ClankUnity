@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ClankNode : Node<ClankNode>
+public class ClankNode : Node
 {
-    public ClankNode(int id) : base(id)
+/*    public ClankNode(int id) : base(id)
     {
 
-    }
+    }*/
     public enum TileState
     {
         NONE,

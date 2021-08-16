@@ -2608,35 +2608,51 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2665216943020936586, guid: ead348feea4bd5546ae127e0c1295756, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7072497
+      value: 0.70710677
       objectReference: {fileID: 0}
     - target: {fileID: 2665216943020936586, guid: ead348feea4bd5546ae127e0c1295756, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.70690995
+      value: -0.70710677
       objectReference: {fileID: 0}
     - target: {fileID: 2665216943020936586, guid: ead348feea4bd5546ae127e0c1295756, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.0077195046
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2665216943020936586, guid: ead348feea4bd5546ae127e0c1295756, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.0040651634
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2665216943020936586, guid: ead348feea4bd5546ae127e0c1295756, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: -89.044
+      value: -90
       objectReference: {fileID: 0}
     - target: {fileID: 2665216943020936586, guid: ead348feea4bd5546ae127e0c1295756, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -88.497
+      value: -90
       objectReference: {fileID: 0}
     - target: {fileID: 2665216943020936586, guid: ead348feea4bd5546ae127e0c1295756, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 88.201
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 3438234556332627760, guid: ead348feea4bd5546ae127e0c1295756, type: 3}
       propertyPath: m_Name
       value: GameboardComplete
+      objectReference: {fileID: 0}
+    - target: {fileID: 4132908561506560398, guid: ead348feea4bd5546ae127e0c1295756, type: 3}
+      propertyPath: state
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7687626725440666122, guid: ead348feea4bd5546ae127e0c1295756, type: 3}
+      propertyPath: type
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7687626725440666122, guid: ead348feea4bd5546ae127e0c1295756, type: 3}
+      propertyPath: state
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7687626725440666122, guid: ead348feea4bd5546ae127e0c1295756, type: 3}
+      propertyPath: secrets.Array.size
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ead348feea4bd5546ae127e0c1295756, type: 3}

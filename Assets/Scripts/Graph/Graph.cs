@@ -2,22 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Graph<T>
+public class Graph
 {
-    protected List<Node<T>> nodes;
-    protected List<Edge<T>> edges;
+    protected List<Node> nodes;
+    protected List<Edge> edges;
     public Graph()
     {
-        nodes = new List<Node<T>>();
-        edges = new List<Edge<T>>();
+        nodes = new List<Node>();
+        edges = new List<Edge>();
     }
 
-    public void AddNode(Node<T> node)
+    public void AddNode(Node node)
     {
         nodes.Add(node);
     }
 
-    public void AddEdge(Edge<T> edge)
+    public void AddEdge(Edge edge)
     {
         edges.Add(edge);
         edge.StartNode.AddEdge(edge);
@@ -27,7 +27,7 @@ public class Graph<T>
     public void Debug()
     {
         string s = "Graph :\n";
-        foreach(Node<T> n in nodes)
+        foreach(Node n in nodes)
         {
             s += n.ToString() + "\n";
         }
