@@ -63,17 +63,29 @@ public sealed class GameManager : MonoBehaviour
                 {
                     Debug.Log(node.ToString());
 
-                }*/
-
-        /*boardManager.MovePlayerToken(0, (ClankNode)boardManager.graph.GetNode(2));*/
-
+                }
         boardManager.LightOnAdjacentTiles((ClankNode)boardManager.graph.GetNode(2));
+
+        boardManager.MovePlayerToken(0, (ClankNode)boardManager.graph.GetNode(2));*/
+        AddMovementTo(activePlayer, 10);
 
     }
 
-    public void MovePlayerToken(int player, ClankNode clankNode)
+    public void Test2()
     {
-        boardManager.MovePlayerToken(player, (ClankNode)boardManager.graph.GetNode(clankNode.id));
+        Debug.Log("movement : " + playerStates[activePlayer].Movement);
+        Debug.Log("health : " + playerStates[activePlayer].HealthMeter);
+        Debug.Log("attack : " + playerStates[activePlayer].Attack);
+    }
+
+    public void TryToMovePlayerToken(int player, ClankNode clankNode)
+    {
+        boardManager.TryToMovePlayerToken(player, (ClankNode)boardManager.graph.GetNode(clankNode.id));
+    }
+
+    public PlayerState GetPlayerState(int player)
+    {
+        return playerStates[player];
     }
 
     public int GetActivePlayer()
@@ -180,6 +192,11 @@ public sealed class GameManager : MonoBehaviour
         playerStates[player].Movement += number;
     }
 
+    public void ReduceMovementOf(int player, int number)
+    {
+        playerStates[player].Movement -= number;
+    }
+
     // SetUnstoppable
     public void SetUnstoppableTo(int player, bool value)
     {
@@ -190,6 +207,11 @@ public sealed class GameManager : MonoBehaviour
     public void AddAttackTo(int player, int number)
     {
         playerStates[player].Attack += number;
+    }
+
+    public void ReduceAttackOf(int player, int number)
+    {
+        playerStates[player].Attack -= number;
     }
 
     //AddGold to a player

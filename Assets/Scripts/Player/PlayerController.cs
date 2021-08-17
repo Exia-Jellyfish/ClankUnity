@@ -46,5 +46,9 @@ public class PlayerController : MonoBehaviour
         {
             GameManager.GetInstance().Draw(0);
         }
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            GameManager.GetInstance().Test2();
+        }
     }
 }

@@ -26,6 +26,6 @@ public class ClickTile : MonoBehaviour
     {
         Debug.Log("Click on a Tile");
         if (GameManager.GetInstance().PlayerController.Id != GameManager.GetInstance().ActivePlayer) return;
-        GameManager.GetInstance().MovePlayerToken(0, GetComponent<ClankNode>());
+        GameManager.GetInstance().TryToMovePlayerToken(0, GetComponent<ClankNode>());
     }
 }

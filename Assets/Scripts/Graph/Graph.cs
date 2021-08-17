@@ -83,6 +83,18 @@ public class Graph
         return adjacentNodes;
     }
 
+    public Edge FindConnectingEdge(Node node1, Node node2)
+    {
+        foreach (Edge edge in node1.Edges)
+        {
+            if (edge.StartNodeId == node2.id || edge.EndNodeId == node2.id)
+            {
+                return edge;
+            }
+        }
+        return null;
+    }
+
     public void Debug()
     {
         string s = "Graph :\n";
