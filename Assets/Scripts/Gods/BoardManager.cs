@@ -27,8 +27,18 @@ public class BoardManager
         }
     }
 
+    public void LightsOff()
+    {
+        foreach (Node node in graph.nodes.Values)
+        {
+            node.GetComponent<ClickTile>().LightOff();
+        }
+    }
+
     public void MovePlayerToken(int player, ClankNode node)
     {
+        LightsOff();
         playerTokens[player].transform.position = node.transform.position + new Vector3(0, pawnOffset, 0);
+        LightOnAdjacentTiles(node);
     }
 }

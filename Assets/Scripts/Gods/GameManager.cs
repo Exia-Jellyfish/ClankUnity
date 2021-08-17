@@ -70,6 +70,12 @@ public sealed class GameManager : MonoBehaviour
         boardManager.LightOnAdjacentTiles((ClankNode)boardManager.graph.GetNode(2));
 
     }
+
+    public void MovePlayerToken(int player, ClankNode clankNode)
+    {
+        boardManager.MovePlayerToken(0, (ClankNode)boardManager.graph.GetNode(clankNode.id));
+    }
+
     public int GetActivePlayer()
     {
         return activePlayer;
