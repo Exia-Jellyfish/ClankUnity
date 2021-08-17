@@ -55,15 +55,17 @@ public sealed class GameManager : MonoBehaviour
 
     public void Test()
     {
-        ClankGraph graph = new ClankGraph();
+        /*        ClankGraph graph = new ClankGraph();
 
-        graph.Debug();
+                graph.Debug();
 
-        foreach (Node node in graph.FindAdjacentNodes(graph.GetNode(3)))
-        {
-            Debug.Log(node.ToString());
+                foreach (Node node in graph.FindAdjacentNodes(graph.GetNode(3)))
+                {
+                    Debug.Log(node.ToString());
 
-        }
+                }*/
+
+        boardManager.MovePlayerToken(0, (ClankNode)boardManager.graph.GetNode(2));
 
     }
     public int GetActivePlayer()

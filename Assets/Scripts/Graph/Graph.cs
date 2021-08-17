@@ -37,7 +37,6 @@ public class Graph
 
     public void AddEdge(Edge edge)
     {
-        //TODO : nodeedgeid 
         edge.Id = EdgeId++;
         edges.Add(edge);
         nodes[edge.StartNodeId].AddEdge(edge);
