@@ -65,7 +65,9 @@ public sealed class GameManager : MonoBehaviour
 
                 }*/
 
-        boardManager.MovePlayerToken(0, (ClankNode)boardManager.graph.GetNode(2));
+        /*boardManager.MovePlayerToken(0, (ClankNode)boardManager.graph.GetNode(2));*/
+
+        boardManager.LightOnAdjacentTiles((ClankNode)boardManager.graph.GetNode(2));
 
     }
     public int GetActivePlayer()

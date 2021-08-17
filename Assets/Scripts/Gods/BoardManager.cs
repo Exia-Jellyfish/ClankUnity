@@ -18,6 +18,15 @@ public class BoardManager
         }
     }
 
+    public void LightOnAdjacentTiles(ClankNode clankNode)
+    {
+        List<Node> adjacentNodes = graph.FindDirectedAdjacentNodes(clankNode);
+        foreach(Node node in adjacentNodes)
+        {
+            node.GetComponent<ClickTile>().LightOn();
+        }
+    }
+
     public void MovePlayerToken(int player, ClankNode node)
     {
         playerTokens[player].transform.position = node.transform.position + new Vector3(0, pawnOffset, 0);

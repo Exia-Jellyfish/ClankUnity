@@ -11,18 +11,19 @@ public class ClickTile : MonoBehaviour
         GetComponent<FixedJoint>().connectedBody = boardRb;
         mesh = GetComponent<MeshRenderer>();
     }
-    public void OnMouseDown()
-    {
-        Debug.Log("Click on a Tile");
-    }
 
-    private void OnMouseOver()
+    public void LightOn()
     {
         mesh.enabled = true;
     }
 
-    private void OnMouseExit()
+    public void LightOff()
     {
         mesh.enabled = false;
+    }
+
+    public void OnMouseDown()
+    {
+        Debug.Log("Click on a Tile");
     }
 }
