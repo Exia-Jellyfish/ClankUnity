@@ -7,6 +7,7 @@ public class BoardManager
     public ClankGraph graph;
     private GameObject[] playerTokens;
     public const float pawnOffset = 0.05f;
+    private ClankNode[] playerActualNodes;
     public BoardManager()
     {
         graph = new ClankGraph();
@@ -16,6 +17,12 @@ public class BoardManager
         {
             playerTokens[i] = tokens[i].gameObject;
         }
+        playerActualNodes = new ClankNode[GameManager.NUMBER_OF_PLAYERS];
+        for (int i = 0; i < playerActualNodes.Length; i++)
+        {
+            playerActualNodes[i] = (ClankNode)graph.nodes[0];
+        }
+        LightOnAdjacentTiles(playerActualNodes[0]);
     }
 
     public void LightOnAdjacentTiles(ClankNode clankNode)
@@ -35,10 +42,19 @@ public class BoardManager
         }
     }
 
-    public void MovePlayerToken(int player, ClankNode node)
+    public void MovePlayerToken(int player, ClankNode clickedNode)
     {
-        LightsOff();
-        playerTokens[player].transform.position = node.transform.position + new Vector3(0, pawnOffset, 0);
-        LightOnAdjacentTiles(node);
+        List<Node> aroundNodes = graph.FindDirectedAdjacentNodes(playerActualNodes[player]);
+        if (aroundNodes.Contains(clickedNode))
+        {
+            LightsOff();
+            playerTokens[player].transform.position = clickedNode.transform.position + new Vector3(0, pawnOffset, 0);
+            LightOnAdjacentTiles(clickedNode);
+            playerActualNodes[player] = clickedNode;
+        }
+        else
+        {
+            Debug.Log("Impossible de se déplacer sur cette case.");
+        }
     }
 }

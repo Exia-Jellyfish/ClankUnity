@@ -73,7 +73,7 @@ public sealed class GameManager : MonoBehaviour
 
     public void MovePlayerToken(int player, ClankNode clankNode)
     {
-        boardManager.MovePlayerToken(0, (ClankNode)boardManager.graph.GetNode(clankNode.id));
+        boardManager.MovePlayerToken(player, (ClankNode)boardManager.graph.GetNode(clankNode.id));
     }
 
     public int GetActivePlayer()
