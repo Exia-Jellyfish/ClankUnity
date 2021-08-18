@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class Graph
 {
     private static int EdgeId = 0; 
     protected List<Edge> edges;
-    public Dictionary<int, Node> nodes;
+    protected Dictionary<int, Node> nodes;
     public Graph()
     {
         nodes = new Dictionary<int, Node>();
@@ -18,6 +19,15 @@ public class Graph
         return nodes[id];
     }
 
+    public List<Node> GetNodes()
+    {
+        return nodes.Values.ToList();
+    }
+
+    public int GetNodesNumber()
+    {
+        return nodes.Count;
+    }
 
     public void AddNode(Node node)
     {

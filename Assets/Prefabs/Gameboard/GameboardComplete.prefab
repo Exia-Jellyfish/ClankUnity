@@ -519,7 +519,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -860880450170081679, guid: b8d72b9ca73575a4f8229f9a9a7f65d1, type: 3}
       propertyPath: state
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: -860880450170081679, guid: b8d72b9ca73575a4f8229f9a9a7f65d1, type: 3}
       propertyPath: secrets.Array.size
@@ -776,7 +776,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -860880450170081679, guid: b8d72b9ca73575a4f8229f9a9a7f65d1, type: 3}
       propertyPath: state
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2582956505716109611, guid: b8d72b9ca73575a4f8229f9a9a7f65d1, type: 3}
       propertyPath: m_RootOrder

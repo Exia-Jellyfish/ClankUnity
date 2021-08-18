@@ -6,7 +6,8 @@ public enum TileState
 {
     NONE,
     HEAL,
-    SECRET,
+    MINOR_SECRET,
+    MAJOR_SECRET,
     ARTIFACT,
     MONKEY,
 }

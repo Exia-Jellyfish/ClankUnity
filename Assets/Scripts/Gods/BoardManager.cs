@@ -9,9 +9,12 @@ public class BoardManager
     private GameObject[] playerTokens;
     public const float pawnOffset = 0.05f;
     private ClankNode[] playerCurrentNodes;
+    public GameObject[] secretsPrefab;
+    public SpawnManager spawnManager;
     public BoardManager()
     {
         graph = new ClankGraph();
+        spawnManager = GameObject.Find("SpawnManager").GetComponent<SpawnManager>();
         playerTokens = new GameObject[GameManager.NUMBER_OF_PLAYERS];
         PlayerToken[] tokens = GameObject.FindObjectsOfType<PlayerToken>();
         for (int i = 0; i < tokens.Length; i++)
@@ -21,10 +24,32 @@ public class BoardManager
         playerCurrentNodes = new ClankNode[GameManager.NUMBER_OF_PLAYERS];
         for (int i = 0; i < playerCurrentNodes.Length; i++)
         {
-            playerCurrentNodes[i] = (ClankNode)graph.nodes[0];
+            playerCurrentNodes[i] = (ClankNode)graph.GetNode(0);
         }
         LightOnAdjacentTiles(playerCurrentNodes[0]);
 
+        SetupSecrets();
+    }
+
+    public void SetupSecrets()
+    {
+        foreach (ClankNode clankNode in graph.GetNodes())
+        {
+            TileState secretState = clankNode.state;
+            if (secretState == TileState.MINOR_SECRET)
+            {
+                GameObject go = spawnManager.SpawnRandomMinorSecret(clankNode.transform.position);
+                clankNode.secrets.Add(go.GetComponent<SecretToken>());
+                go = spawnManager.SpawnRandomMinorSecret(clankNode.transform.position);
+                clankNode.secrets.Add(go.GetComponent<SecretToken>());
+            }
+
+            else if (secretState == TileState.MAJOR_SECRET)
+            {
+                GameObject go = spawnManager.SpawnRandomMajorSecret(clankNode.transform.position);
+                clankNode.secrets.Add(go.GetComponent<SecretToken>());
+            }
+        }
     }
 
     public void LightOnAdjacentTiles(ClankNode clankNode)
@@ -58,7 +83,7 @@ public class BoardManager
 
     public void LightsOff()
     {
-        foreach (Node node in graph.nodes.Values)
+        foreach (Node node in graph.GetNodes())
         {
             node.GetComponent<ClickTile>().LightOff();
         }
@@ -108,7 +133,8 @@ public class BoardManager
     {
         switch (playerCurrentNodes[player].GetComponent<ClankNode>().state)
         {
-            case TileState.SECRET:
+            case TileState.MINOR_SECRET:
+            case TileState.MAJOR_SECRET:
                 EnterSecretNode(player);
                 break;
 
@@ -142,7 +168,6 @@ public class BoardManager
                 break;
         }
     }
-
 
     public void EnterSecretNode(int player)
     {
