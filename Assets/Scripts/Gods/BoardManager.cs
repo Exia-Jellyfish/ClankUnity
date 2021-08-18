@@ -8,7 +8,7 @@ public class BoardManager
     public ClankGraph graph;
     private GameObject[] playerTokens;
     public const float pawnOffset = 0.05f;
-    private ClankNode[] playerActualNodes;
+    private ClankNode[] playerCurrentNodes;
     public BoardManager()
     {
         graph = new ClankGraph();
@@ -18,12 +18,12 @@ public class BoardManager
         {
             playerTokens[i] = tokens[i].gameObject;
         }
-        playerActualNodes = new ClankNode[GameManager.NUMBER_OF_PLAYERS];
-        for (int i = 0; i < playerActualNodes.Length; i++)
+        playerCurrentNodes = new ClankNode[GameManager.NUMBER_OF_PLAYERS];
+        for (int i = 0; i < playerCurrentNodes.Length; i++)
         {
-            playerActualNodes[i] = (ClankNode)graph.nodes[0];
+            playerCurrentNodes[i] = (ClankNode)graph.nodes[0];
         }
-        LightOnAdjacentTiles(playerActualNodes[0]);
+        LightOnAdjacentTiles(playerCurrentNodes[0]);
 
     }
 
@@ -39,14 +39,14 @@ public class BoardManager
     private bool CheckTile(int player, ClankNode clankNode)
     {
         PlayerState playerState = GameManager.GetInstance().GetPlayerState(player);
-        ClankEdge travelEdge = (ClankEdge)graph.FindConnectingEdge(playerActualNodes[player], clankNode);
+        ClankEdge travelEdge = (ClankEdge)graph.FindConnectingEdge(playerCurrentNodes[player], clankNode);
         //TODO : change the isLocked verification;
-        return travelEdge != null && travelEdge.movementCost <= playerState.Movement && !travelEdge.isLocked;
+        return travelEdge != null && travelEdge.movementCost <= playerState.Movement && !travelEdge.isLocked && !playerState.IsStuck;
     }
 
     public void LightOnCheckedAdjacentTiles(int player)
     {
-        List<Node> adjacentNodes = graph.FindDirectedAdjacentNodes(playerActualNodes[player]);
+        List<Node> adjacentNodes = graph.FindDirectedAdjacentNodes(playerCurrentNodes[player]);
         foreach(ClankNode node in adjacentNodes)
         {
             if (CheckTile(player, node))
@@ -76,7 +76,7 @@ public class BoardManager
 
     private List<Node> FindValidTiles(int player)
     {
-        return graph.FindDirectedAdjacentNodes(playerActualNodes[player]).Where(node => CheckTile(player, (ClankNode)node)).ToList();
+        return graph.FindDirectedAdjacentNodes(playerCurrentNodes[player]).Where(node => CheckTile(player, (ClankNode)node)).ToList();
     }
 
     public void TryToMovePlayerToken(int player, ClankNode clickedNode)
@@ -84,10 +84,12 @@ public class BoardManager
         List<Node> validNodes = FindValidTiles(player);
         if (validNodes.Contains(clickedNode))
         {
-            ClankEdge travelEdge = (ClankEdge)graph.FindConnectingEdge(playerActualNodes[player], clickedNode);
+            ClankEdge travelEdge = (ClankEdge)graph.FindConnectingEdge(playerCurrentNodes[player], clickedNode);
             LightsOff();
             PayMoveCost(player, travelEdge);
             MovePlayerToken(player, clickedNode);
+            DoTileTypeEffects(player);
+            DoTileStateEffects(player);
             LightOnCheckedAdjacentTiles(player);
         }
         else
@@ -99,6 +101,57 @@ public class BoardManager
     private void MovePlayerToken(int player, ClankNode clickedNode)
     {
         playerTokens[player].transform.position = clickedNode.transform.position + new Vector3(0, pawnOffset, 0);
-        playerActualNodes[player] = clickedNode;
+        playerCurrentNodes[player] = clickedNode;
+    }
+
+    public void DoTileStateEffects(int player)
+    {
+        switch (playerCurrentNodes[player].GetComponent<ClankNode>().state)
+        {
+            case TileState.SECRET:
+                EnterSecretNode(player);
+                break;
+
+            case TileState.HEAL:
+                GameManager.GetInstance().HealPlayer(player, 1);
+                break;
+
+            case TileState.MONKEY:
+                Debug.Log("Got a monkey treasure");
+                break;
+
+            case TileState.ARTIFACT:
+                Debug.Log("Do you want this artifact ?");
+                break;
+        }
+    }
+
+    public void DoTileTypeEffects(int player)
+    {
+        switch (playerCurrentNodes[player].GetComponent<ClankNode>().type)
+        {
+            case TileType.CRYSTAL_CAVERNS:
+                Debug.Log("You can't move it move it anymore..");
+                if (!GameManager.GetInstance().GetPlayerState(player).IsUnstoppable)
+                GameManager.GetInstance().GetPlayerState(player).IsStuck = true;
+                break;
+
+
+            case TileType.SHOP:
+                Debug.Log("Let's do some shopping !");
+                break;
+        }
+    }
+
+
+    public void EnterSecretNode(int player)
+    {
+        List<SecretToken> secrets = playerCurrentNodes[player].GetComponent<ClankNode>().secrets;
+        secrets[0].GetComponent<SecretEffect>().Execute();
+        secrets.RemoveAt(0);
+        if (secrets.Count == 0)
+        {
+            playerCurrentNodes[player].GetComponent<ClankNode>().state = TileState.NONE;
+        }
     }
 }

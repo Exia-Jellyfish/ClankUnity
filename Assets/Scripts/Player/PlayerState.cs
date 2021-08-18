@@ -9,6 +9,7 @@ public class PlayerState
     private int clankCubes = 30;
     private int healthMeter;
     private int gold;
+    private bool isStuck = false;
     private bool isUnstoppable;
     private bool isPlaying;
     private bool hasArtifact;
@@ -22,4 +23,5 @@ public class PlayerState
     public bool IsUnstoppable { get => isUnstoppable; set => isUnstoppable = value; }
     public bool IsPlaying { get => isPlaying; private set => isPlaying = value; }
     public bool HasArtifact { get => hasArtifact; private set => hasArtifact = value; }
+    public bool IsStuck { get => isStuck; set => isStuck = value; }
 }

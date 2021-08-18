@@ -67,15 +67,20 @@ public sealed class GameManager : MonoBehaviour
         boardManager.LightOnAdjacentTiles((ClankNode)boardManager.graph.GetNode(2));
 
         boardManager.MovePlayerToken(0, (ClankNode)boardManager.graph.GetNode(2));*/
+        AddMovementTo(1, 10);
         AddMovementTo(activePlayer, 10);
+        AddSkillpointTo(activePlayer, 10);
 
     }
 
     public void Test2()
     {
-        Debug.Log("movement : " + playerStates[activePlayer].Movement);
-        Debug.Log("health : " + playerStates[activePlayer].HealthMeter);
-        Debug.Log("attack : " + playerStates[activePlayer].Attack);
+        Debug.Log("movement active : " + playerStates[activePlayer].Movement);
+        Debug.Log("skill active : " + playerStates[activePlayer].Skillpoints);
+        Debug.Log("attack active : " + playerStates[activePlayer].Attack);
+        Debug.Log("movement 1 : " + playerStates[1].Movement);
+        Debug.Log("skill 1 : " + playerStates[1].Skillpoints);
+
     }
 
     public void TryToMovePlayerToken(int player, ClankNode clankNode)
