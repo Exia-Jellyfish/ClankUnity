@@ -5,11 +5,6 @@ public class HealPlayer : CardEffect
 {
     public int number;
 
-    public HealPlayer(int player, int number) : base(player)
-    {
-        this.number = number;
-    }
-
     public override void Execute()
     {
         base.Execute();

@@ -6,11 +6,6 @@ public class RemoveClank : CardEffect
 {
     public int number;
 
-    public RemoveClank(int player, int number) : base(player)
-    {
-        this.number = number;
-    }
-
     public override void Execute()
     {
         base.Execute();

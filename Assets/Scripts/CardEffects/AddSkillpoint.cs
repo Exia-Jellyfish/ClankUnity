@@ -5,10 +5,6 @@ public class AddSkillpoint : CardEffect
 {
     public int number;
 
-    public AddSkillpoint(int player, int number) : base(player)
-    {
-        this.number = number;
-    }
 
     public override void Execute()
     {

@@ -4,10 +4,6 @@ using System.Collections.Generic;
 public class AddAttack : CardEffect
 {
     public int number;
-    public AddAttack(int player, int number) : base(player)
-    {
-        this.number = number;
-    }
 
     public override void Execute()
     {
