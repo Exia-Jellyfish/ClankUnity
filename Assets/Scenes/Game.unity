@@ -2661,10 +2661,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d269e8f6e8be8594d9e7e0d98b3aa2b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  secretsPrefab:
-  - {fileID: 5225333677397180358, guid: 15cc841aee7454544b550bd08c83bcd4, type: 3}
-  - {fileID: 7678320353945553921, guid: b7eb3c52bd915c74192983c1f93babe6, type: 3}
+  minorSecretsPrefab:
   - {fileID: 7505233388123885046, guid: d4f97d9bdb23f614fbbd0cb8e6ac82e7, type: 3}
+  - {fileID: 7678320353945553921, guid: b7eb3c52bd915c74192983c1f93babe6, type: 3}
+  - {fileID: 5225333677397180358, guid: 15cc841aee7454544b550bd08c83bcd4, type: 3}
+  majorSecretsPrefab:
+  - {fileID: 3864993518888558766, guid: 77be52bff90d16b40ba60389ee166ac0, type: 3}
 --- !u!4 &1900562501
 Transform:
   m_ObjectHideFlags: 0

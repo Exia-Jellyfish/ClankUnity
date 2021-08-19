@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SecretSkillPoints : SecretEffect
+public class SkillPointsSecret : SecretEffect
 {
     public override void Execute()
     {

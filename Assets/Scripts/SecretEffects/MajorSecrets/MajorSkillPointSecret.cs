@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SecretHealPotion : SecretEffect
+public class MajorSkillPointSecret : SecretEffect
 {
     public override void Execute()
     {
         base.Execute();
-
+        GameManager.GetInstance().AddSkillpointTo(player, 5);
     }
 }
