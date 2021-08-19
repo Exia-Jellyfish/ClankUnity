@@ -172,7 +172,7 @@ public class BoardManager
     {
         List<SecretToken> secrets = playerCurrentNodes[player].GetComponent<ClankNode>().secrets;
         secrets[0].GetComponent<SecretEffect>().Execute();
-        
+        Object.Destroy(secrets[0].gameObject);
         secrets.RemoveAt(0);
         if (secrets.Count == 0)
         {
