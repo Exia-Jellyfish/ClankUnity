@@ -5,11 +5,6 @@ public abstract class CardEffect : MonoBehaviour
 {
     protected int player;
 
-    protected CardEffect(int player)
-    {
-        this.player = player;
-    }
-
     public virtual void Execute()
     {
 

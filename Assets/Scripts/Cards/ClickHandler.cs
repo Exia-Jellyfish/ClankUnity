@@ -18,8 +18,20 @@ public class ClickHandler : MonoBehaviour
         // If it's not player turn, return
         if (GameManager.GetInstance().PlayerController.Id != GameManager.GetInstance().ActivePlayer) return;
 
-        PlayerState player = GameManager.GetInstance().GetActivePlayerState();
+        
+        if (data.isInShop)
+        {
+            BuyCard();
+        }
+        else
+        {
+            PlayCard();
+        }
+    }
 
+    public void BuyCard()
+    {
+        PlayerState player = GameManager.GetInstance().GetActivePlayerState();
         // If player has the amount to buy a card
         if (player.Skillpoints >= data.skillPointCost && player.Attack >= data.attackCost && data.isInShop == true)
         {
@@ -32,4 +44,10 @@ public class ClickHandler : MonoBehaviour
         }
         Debug.Log("carte non achetée");
     }
-}
+
+    public void PlayCard()
+    {
+        GameManager.GetInstance().PlayCard(card);
+        Debug.Log("Carte jouée !");
+    }
+}    
