@@ -7,9 +7,8 @@ public class BoardManager
 {
     public ClankGraph graph;
     private GameObject[] playerTokens;
-    public const float pawnOffset = 0.05f;
+    private const float pawnOffset = 0.2f;
     private ClankNode[] playerCurrentNodes;
-    public GameObject[] secretsPrefab;
     public SpawnManager spawnManager;
     public BoardManager()
     {
@@ -173,6 +172,7 @@ public class BoardManager
     {
         List<SecretToken> secrets = playerCurrentNodes[player].GetComponent<ClankNode>().secrets;
         secrets[0].GetComponent<SecretEffect>().Execute();
+        
         secrets.RemoveAt(0);
         if (secrets.Count == 0)
         {

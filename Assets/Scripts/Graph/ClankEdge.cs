@@ -11,6 +11,7 @@ public class ClankEdge : Edge
     {
         startNodeId = startTile.GetComponent<ClankNode>().id;
         endNodeId = endTile.GetComponent<ClankNode>().id;
+        gameObject.GetComponent<FixedJoint>().connectedBody = gameObject.transform.root.transform.GetComponent<Rigidbody>();
     }
 
 

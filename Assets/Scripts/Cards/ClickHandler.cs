@@ -47,7 +47,8 @@ public class ClickHandler : MonoBehaviour
 
     public void PlayCard()
     {
-        GameManager.GetInstance().PlayCard(card);
+        GameManager.GetInstance().PlayCard(GameManager.GetInstance().ActivePlayer, card);
         Debug.Log("Carte jouée !");
+        GameManager.GetInstance().Test2();
     }
 }    

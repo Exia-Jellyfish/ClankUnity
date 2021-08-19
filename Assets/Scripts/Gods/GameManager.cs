@@ -28,6 +28,15 @@ public sealed class GameManager : MonoBehaviour
 
     private void Awake()
     {
+        if(instance == null)
+        {
+            instance = this;
+
+        }
+        else
+        {
+            Destroy(this);
+        }
         Deck[] decks = new Deck[NUMBER_OF_PLAYERS];
         Deck[] discards = new Deck[NUMBER_OF_PLAYERS];
         playerStates = new PlayerState[NUMBER_OF_PLAYERS];
@@ -36,6 +45,8 @@ public sealed class GameManager : MonoBehaviour
             playerStates[i] = new PlayerState();
             decks[i] = Instantiate(deckPrefab).GetComponent<Deck>();
             discards[i] = Instantiate(discardPrefab).GetComponent<Deck>();
+            decks[i].gameObject.transform.position = new Vector3(-5.05629873f, 1.24331939f, 0.848258018f);
+            discards[i].gameObject.transform.position = new Vector3(-4.11237621f, 1.24699998f, 0.794548154f);
         }
         deckManager = new DeckManager(decks, discards);
         clankCounters = new int[NUMBER_OF_PLAYERS];
@@ -44,7 +55,6 @@ public sealed class GameManager : MonoBehaviour
         boardManager = new BoardManager();
 
 
-        instance = this;
 
     }
 
@@ -75,12 +85,10 @@ public sealed class GameManager : MonoBehaviour
 
     public void Test2()
     {
-        Debug.Log("movement active : " + playerStates[activePlayer].Movement);
-        Debug.Log("skill active : " + playerStates[activePlayer].Skillpoints);
-        Debug.Log("attack active : " + playerStates[activePlayer].Attack);
-        Debug.Log("movement 1 : " + playerStates[1].Movement);
-        Debug.Log("skill 1 : " + playerStates[1].Skillpoints);
-
+        Debug.Log("Movement points : " + playerStates[activePlayer].Movement);
+        Debug.Log("Skill points : " + playerStates[activePlayer].Skillpoints);
+        Debug.Log("Attack points : " + playerStates[activePlayer].Attack);
+        Debug.Log("Gold : " + playerStates[activePlayer].Gold);
     }
 
     public void TryToMovePlayerToken(int player, ClankNode clankNode)
@@ -176,12 +184,13 @@ public sealed class GameManager : MonoBehaviour
         playerStates[player].HealthMeter += number;
     }
 
-    public void PlayCard(GameObject card)
+    public void PlayCard(int player, GameObject card)
     {
         foreach (CardEffect effect in card.GetComponents<CardEffect>())
         {
             effect.Execute();
         }
+        deckManager.Discard(player, card);
     }
 
     // Skillpoints

@@ -1,33 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &1920872488
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3470254602478435881}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c3308aaaf076b8a41a44f806d2d67f38, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  victoryPoints: 0
-  attackCost: 0
-  skillPointCost: 2
-  isInShop: 1
---- !u!114 &1920872493
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3470254602478435881}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8401277c862b84f47ad2b5c403111f31, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1920872494
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -124,6 +96,22 @@ PrefabInstance:
     - target: {fileID: 1956230615280054626, guid: 1ad8d971c6d5b8547b6f15a90498d22c, type: 3}
       propertyPath: m_Name
       value: mercenaire Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 6360500825399234112, guid: 1ad8d971c6d5b8547b6f15a90498d22c, type: 3}
+      propertyPath: m_Size.z
+      value: 0.00006565184
+      objectReference: {fileID: 0}
+    - target: {fileID: 6360500825399234112, guid: 1ad8d971c6d5b8547b6f15a90498d22c, type: 3}
+      propertyPath: m_Center.x
+      value: -0.00000011864905
+      objectReference: {fileID: 0}
+    - target: {fileID: 6360500825399234112, guid: 1ad8d971c6d5b8547b6f15a90498d22c, type: 3}
+      propertyPath: m_Center.y
+      value: 1.07179595e-17
+      objectReference: {fileID: 0}
+    - target: {fileID: 6360500825399234112, guid: 1ad8d971c6d5b8547b6f15a90498d22c, type: 3}
+      propertyPath: m_Center.z
+      value: 0.000032824762
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1ad8d971c6d5b8547b6f15a90498d22c, type: 3}

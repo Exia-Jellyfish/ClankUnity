@@ -11,10 +11,10 @@ public class ClankNode : Node
     public int monkeys;
     public bool isUnderGround;
 
-/*    private void Start()
-    {
-        secrets = new List<SecretToken>();
-    }*/
+    /*    private void Start()
+        {
+            secrets = new List<SecretToken>();
+        }*/
 
     public void Sheet()
     {

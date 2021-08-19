@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Node : MonoBehaviour
 {
-    private List<Edge> edges;
+    protected List<Edge> edges;
     public int id;
 
     /*public Node(int id)
@@ -16,6 +16,8 @@ public class Node : MonoBehaviour
     private void Awake()
     {
         edges = new List<Edge>();
+        Debug.Log("Awake");
+        Debug.Log(edges);
     }
 
     public int Id { get => id; set => id = value; }
@@ -27,8 +29,9 @@ public class Node : MonoBehaviour
     }
     public override string ToString()
     {
+        Debug.Log(this.gameObject);
         string s = "Node " + id + ": [";
-        foreach(Edge edge in Edges)
+        foreach(Edge edge in edges)
         {
             s += edge.ToString() + ", ";
         }

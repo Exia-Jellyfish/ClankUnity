@@ -12,47 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 225734d1fb7afdc40a3ba1f3ce240b7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &2348267461602645095
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2533079740336464225}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b45be5a350ed51640baa693067fa681c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  number: 2
---- !u!114 &9097986018190113242
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2533079740336464225}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c3308aaaf076b8a41a44f806d2d67f38, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  victoryPoints: 0
-  attackCost: 0
-  skillPointCost: 3
-  isInShop: 1
---- !u!114 &356983956854191057
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2533079740336464225}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8401277c862b84f47ad2b5c403111f31, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1744728924535980163
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -63,6 +22,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0acf168fc8e91e049aa858d6f081d4c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  number: 2
+--- !u!114 &2348267461602645095
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2533079740336464225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b45be5a350ed51640baa693067fa681c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   number: 2
