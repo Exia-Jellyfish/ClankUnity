@@ -25,6 +25,8 @@ public class BoardManager
         {
             playerCurrentNodes[i] = (ClankNode)graph.GetNode(0);
         }
+        CardEffect.playerUpdated += LightOnValidTiles;
+        
         LightOnAdjacentTiles(playerCurrentNodes[0]);
 
         SetupSecrets();
@@ -65,19 +67,20 @@ public class BoardManager
         PlayerState playerState = GameManager.GetInstance().GetPlayerState(player);
         ClankEdge travelEdge = (ClankEdge)graph.FindConnectingEdge(playerCurrentNodes[player], clankNode);
         //TODO : change the isLocked verification;
-        return travelEdge != null && travelEdge.movementCost <= playerState.Movement && !travelEdge.isLocked && !playerState.IsStuck;
+        return travelEdge != null && travelEdge.movementCost <= playerState.Movement && !travelEdge.isLocked && !playerState.IsStuck && (playerCurrentNodes[player].type != TileType.CRYSTAL_CAVERNS || playerState.IsUnstoppable);
     }
 
-    public void LightOnCheckedAdjacentTiles(int player)
+    public void LightOnTiles(List<Node> nodes)
     {
-        List<Node> adjacentNodes = graph.FindDirectedAdjacentNodes(playerCurrentNodes[player]);
-        foreach(ClankNode node in adjacentNodes)
+        foreach (ClankNode node in nodes)
         {
-            if (CheckTile(player, node))
-            {
-                node.GetComponent<ClickTile>().LightOn();
-            }
+            node.GetComponent<ClickTile>().LightOn();
         }
+    }
+
+    public void LightOnValidTiles(int player)
+    {
+        LightOnTiles(FindValidTiles(player));
     }
 
     public void LightsOff()
@@ -87,7 +90,6 @@ public class BoardManager
             node.GetComponent<ClickTile>().LightOff();
         }
     }
-
     private void PayMoveCost(int player, ClankEdge travelEdge)
     {
         PlayerState playerState = GameManager.GetInstance().GetPlayerState(player);
@@ -114,7 +116,7 @@ public class BoardManager
             MovePlayerToken(player, clickedNode);
             DoTileTypeEffects(player);
             DoTileStateEffects(player);
-            LightOnCheckedAdjacentTiles(player);
+            LightOnTiles(FindValidTiles(player));
         }
         else
         {
@@ -130,7 +132,7 @@ public class BoardManager
 
     public void DoTileStateEffects(int player)
     {
-        switch (playerCurrentNodes[player].GetComponent<ClankNode>().state)
+        switch (playerCurrentNodes[player].state)
         {
             case TileState.MINOR_SECRET:
             case TileState.MAJOR_SECRET:
@@ -155,12 +157,10 @@ public class BoardManager
 
     public void DoTileTypeEffects(int player)
     {
-        switch (playerCurrentNodes[player].GetComponent<ClankNode>().type)
+        switch (playerCurrentNodes[player].type)
         {
             case TileType.CRYSTAL_CAVERNS:
                 Debug.Log("You can't move anymore this turn.");
-                if (!GameManager.GetInstance().GetPlayerState(player).IsUnstoppable)
-                GameManager.GetInstance().GetPlayerState(player).IsStuck = true;
                 break;
 
 
