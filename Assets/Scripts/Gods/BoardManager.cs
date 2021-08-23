@@ -172,20 +172,22 @@ public class BoardManager
 
     public void EnterSecretNode(int player)
     {
-        List<SecretToken> secrets = playerCurrentNodes[player].GetComponent<ClankNode>().secrets;
+        List<SecretToken> secrets = playerCurrentNodes[player].secrets;
         secrets[0].GetComponent<SecretEffect>().Execute();
         Object.Destroy(secrets[0].gameObject);
         secrets.RemoveAt(0);
         if (secrets.Count == 0)
         {
-            playerCurrentNodes[player].GetComponent<ClankNode>().state = TileState.NONE;
+            playerCurrentNodes[player].state = TileState.NONE;
         }
     }
 
     public void EnterArtifactNode(int player)
     {
-        Artifact artifact = playerCurrentNodes[player].GetComponent<Artifact>();
+        Artifact artifact = playerCurrentNodes[player].artifact;
+        GameManager.GetInstance().AddToInventory(artifact);
         PlayerState playerState = GameManager.GetInstance().GetPlayerState(player);
         playerState.HasArtifact = true;
+        artifact.gameObject.SetActive(false);
     }
 }

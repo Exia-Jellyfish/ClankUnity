@@ -14,6 +14,7 @@ public sealed class GameManager : MonoBehaviour
     private DeckManager deckManager;
     public GameObject deckPrefab;
     public GameObject discardPrefab;
+    private InventoryManager inventoryManager;
 
 
     private PlayerController playerController;
@@ -48,12 +49,13 @@ public sealed class GameManager : MonoBehaviour
             decks[i].gameObject.transform.position = new Vector3(-5.05629873f, 1.24331939f, 0.848258018f);
             discards[i].gameObject.transform.position = new Vector3(-4.11237621f, 1.24699998f, 0.794548154f);
         }
+
         deckManager = new DeckManager(decks, discards);
         clankCounters = new int[NUMBER_OF_PLAYERS];
         bag = new Bag();
         playerController = GameObject.Find("Player").GetComponent<PlayerController>();
         boardManager = new BoardManager();
-
+        inventoryManager = new InventoryManager();
 
 
     }
@@ -85,10 +87,11 @@ public sealed class GameManager : MonoBehaviour
 
     public void Test2()
     {
-        Debug.Log("Movement points : " + playerStates[activePlayer].Movement);
+        /*Debug.Log("Movement points : " + playerStates[activePlayer].Movement);
         Debug.Log("Skill points : " + playerStates[activePlayer].Skillpoints);
         Debug.Log("Attack points : " + playerStates[activePlayer].Attack);
-        Debug.Log("Gold : " + playerStates[activePlayer].Gold);
+        Debug.Log("Gold : " + playerStates[activePlayer].Gold);*/
+        Debug.Log("Inventory : " + inventoryManager.InventoryItems[0]);
     }
 
     public void TryToMovePlayerToken(int player, ClankNode clankNode)
@@ -250,5 +253,10 @@ public sealed class GameManager : MonoBehaviour
     public void DragonAttack(int dragonRage)
     {
         bag.PickCubes(dragonRage);
+    }
+
+    public void AddToInventory(IInventoryItem item)
+    {
+        inventoryManager.AddToInventory(item);
     }
 }

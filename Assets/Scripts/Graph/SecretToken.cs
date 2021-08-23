@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SecretToken : MonoBehaviour
+public class SecretToken : MonoBehaviour, IInventoryItem
 {
     // Start is called before the first frame update
     void Start()

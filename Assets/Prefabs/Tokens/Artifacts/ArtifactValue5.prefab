@@ -15,6 +15,14 @@ PrefabInstance:
       propertyPath: victoryPoints
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 7388231331790974530, guid: ac4a3353cecc51b4d8277a0555b4c82b, type: 3}
+      propertyPath: m_Drag
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7388231331790974530, guid: ac4a3353cecc51b4d8277a0555b4c82b, type: 3}
+      propertyPath: m_Mass
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 7388231331790974531, guid: ac4a3353cecc51b4d8277a0555b4c82b, type: 3}
       propertyPath: m_RootOrder
       value: 0
