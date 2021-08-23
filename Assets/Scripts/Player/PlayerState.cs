@@ -13,6 +13,7 @@ public class PlayerState
     private bool isUnstoppable;
     private bool isPlaying;
     private bool hasArtifact;
+    private int victoryPoints;
 
     public int Skillpoints { get => skillpoints; set => skillpoints = value; }
     public int Attack { get => attack; set => attack = value; }
@@ -24,4 +25,5 @@ public class PlayerState
     public bool IsPlaying { get => isPlaying; private set => isPlaying = value; }
     public bool HasArtifact { get => hasArtifact; set => hasArtifact = value; }
     public bool IsStuck { get => isStuck; set => isStuck = value; }
+    public int VictoryPoints { get => victoryPoints; set => victoryPoints = value; }
 }

@@ -2,10 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum TileType
+public class EndTile
 {
-    NONE,
-    SHOP,
-    CRYSTAL_CAVERNS,
-    END_TILE,
+
 }

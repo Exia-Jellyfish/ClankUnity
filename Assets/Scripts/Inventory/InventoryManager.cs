@@ -4,16 +4,29 @@ using UnityEngine;
 
 public class InventoryManager
 {
-    private List<IInventoryItem> inventoryItems;
-    public List<IInventoryItem> InventoryItems { get => inventoryItems; private set => inventoryItems = value; }
+    private List<IInventoryItem>[] inventoryItems;
 
     public InventoryManager()
     {
-        InventoryItems = new List<IInventoryItem>();
+        inventoryItems = new List<IInventoryItem>[GameManager.NUMBER_OF_PLAYERS]; 
+        for (int i = 0; i < GameManager.NUMBER_OF_PLAYERS; i++)
+        {
+            inventoryItems[i] = new List<IInventoryItem>();
+        }
     }
 
-    public void AddToInventory(IInventoryItem item)
+    public void AddToInventory(int player, IInventoryItem item)
     {
-        inventoryItems.Add(item);
+        inventoryItems[player].Add(item);
+    }
+
+    public IInventoryItem GetItem(int player, int number)
+    {
+        return inventoryItems[player][number];
+    }
+
+    public int GetInventorySize(int player)
+    {
+        return inventoryItems[player].Count;
     }
 }

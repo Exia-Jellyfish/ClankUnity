@@ -50,5 +50,10 @@ public class PlayerController : MonoBehaviour
         {
             GameManager.GetInstance().Test2();
         }
+
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            GameManager.GetInstance().TestInventory();
+        }
     }
 }

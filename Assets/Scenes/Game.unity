@@ -526,6 +526,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameboardComplete
       objectReference: {fileID: 0}
+    - target: {fileID: 7388724476078396282, guid: ead348feea4bd5546ae127e0c1295756, type: 3}
+      propertyPath: type
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7641923475807278372, guid: ead348feea4bd5546ae127e0c1295756, type: 3}
+      propertyPath: m_ConnectedBody
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 8362491586236615212, guid: ead348feea4bd5546ae127e0c1295756, type: 3}
       propertyPath: state
       value: 3

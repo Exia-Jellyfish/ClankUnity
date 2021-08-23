@@ -87,11 +87,16 @@ public sealed class GameManager : MonoBehaviour
 
     public void Test2()
     {
-        /*Debug.Log("Movement points : " + playerStates[activePlayer].Movement);
+        Debug.Log("Movement points : " + playerStates[activePlayer].Movement);
         Debug.Log("Skill points : " + playerStates[activePlayer].Skillpoints);
         Debug.Log("Attack points : " + playerStates[activePlayer].Attack);
-        Debug.Log("Gold : " + playerStates[activePlayer].Gold);*/
-        Debug.Log("Inventory : " + inventoryManager.InventoryItems[0]);
+        Debug.Log("Gold : " + playerStates[activePlayer].Gold);
+        
+    }
+
+    public void TestInventory()
+    {
+        Debug.Log("Inventory : " + inventoryManager.GetItem(ActivePlayer, 0));
     }
 
     public void TryToMovePlayerToken(int player, ClankNode clankNode)
@@ -255,8 +260,39 @@ public sealed class GameManager : MonoBehaviour
         bag.PickCubes(dragonRage);
     }
 
-    public void AddToInventory(IInventoryItem item)
+    public void AddToInventory(int player, IInventoryItem item)
     {
-        inventoryManager.AddToInventory(item);
+        inventoryManager.AddToInventory(player, item);
+    }
+
+    public int ScoreInventory(int player)
+    {
+        int score = 0;
+        for (int i = 0; i< inventoryManager.GetInventorySize(player); i++)
+        {
+            if(inventoryManager.GetItem(player, i) is Artifact)
+            {
+                score += (inventoryManager.GetItem(player, i) as Artifact).victoryPoints;
+            }
+            /*else if (inventoryManager.GetItem(i) is Treasure)
+            {
+                score += (inventoryManager.GetItem(i) as Treasure).victoryPoints;
+            }*/
+            /*else if (inventoryManager.GetItem(i) is ShopItem)
+            {
+                score += (inventoryManager.GetItem(i) as ShopItem).victoryPoints;
+            }*/
+        }
+        return score;
+    }
+
+    public int ScoreDeck(int player)
+    {
+        return deckManager.ScoreDeck(player);
+    }
+
+    public int ScoreDiscard(int player)
+    {
+        return deckManager.ScoreDiscard(player);
     }
 }

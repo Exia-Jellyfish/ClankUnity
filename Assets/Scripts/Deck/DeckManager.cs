@@ -39,4 +39,34 @@ public class DeckManager
         playerDiscards[player].AddCard(card);
         card.SetActive(false);
     }
+
+    public int GetCardInDeckVictoryPoints(int player, int card)
+    {
+        return playerDecks[player].cards[card].GetComponent<CardData>().victoryPoints;
+    }
+
+    public int GetCardInDiscardVictoryPoints(int player, int card)
+    {
+        return playerDiscards[player].cards[card].GetComponent<CardData>().victoryPoints;
+    }
+
+    public int ScoreDeck(int player)
+    {
+        int score = 0;
+        for (int i = 0; i < playerDecks[player].Count; i++)
+        {
+            score += GetCardInDeckVictoryPoints(player, i);
+        }
+        return score;
+    }
+
+    public int ScoreDiscard(int player)
+    {
+        int score = 0;
+        for (int i = 0; i < playerDiscards[player].Count; i++)
+        {
+            score += GetCardInDiscardVictoryPoints(player, i);
+        }
+        return score;
+    }
 }

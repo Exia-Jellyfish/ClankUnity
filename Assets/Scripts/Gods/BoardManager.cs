@@ -158,7 +158,7 @@ public class BoardManager
         switch (playerCurrentNodes[player].GetComponent<ClankNode>().type)
         {
             case TileType.CRYSTAL_CAVERNS:
-                Debug.Log("You can't move it move it anymore..");
+                Debug.Log("You can't move anymore this turn.");
                 if (!GameManager.GetInstance().GetPlayerState(player).IsUnstoppable)
                 GameManager.GetInstance().GetPlayerState(player).IsStuck = true;
                 break;
@@ -166,6 +166,13 @@ public class BoardManager
 
             case TileType.SHOP:
                 Debug.Log("Let's do some shopping !");
+                break;
+
+            case TileType.END_TILE:
+                if (GameManager.GetInstance().GetPlayerState(player).HasArtifact)
+                {
+                    EndGame(player);
+                }
                 break;
         }
     }
@@ -184,10 +191,27 @@ public class BoardManager
 
     public void EnterArtifactNode(int player)
     {
+        bool option = UnityEditor.EditorUtility.DisplayDialog("Artifact", "Do you want this Artifact ?", "Yes", "No thanks");
+        if (option == true)
+        {
+            AddArtifactToInventory(player);
+        }
+    }
+
+    public void AddArtifactToInventory(int player)
+    {
         Artifact artifact = playerCurrentNodes[player].artifact;
-        GameManager.GetInstance().AddToInventory(artifact);
+        GameManager.GetInstance().AddToInventory(player, artifact);
         PlayerState playerState = GameManager.GetInstance().GetPlayerState(player);
         playerState.HasArtifact = true;
         artifact.gameObject.SetActive(false);
+
+    }
+
+    public void EndGame(int player)
+    {
+        PlayerState playerState = GameManager.GetInstance().GetPlayerState(player);
+        playerState.VictoryPoints = GameManager.GetInstance().ScoreInventory(player) + playerState.Gold + GameManager.GetInstance().ScoreDeck(player) + GameManager.GetInstance().ScoreDiscard(player);
+        Debug.Log("Your victory points : " + playerState.VictoryPoints);
     }
 }
