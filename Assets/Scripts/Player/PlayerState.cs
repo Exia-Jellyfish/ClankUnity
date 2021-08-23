@@ -22,6 +22,6 @@ public class PlayerState
     public int Gold { get => gold; set => gold = value; }
     public bool IsUnstoppable { get => isUnstoppable; set => isUnstoppable = value; }
     public bool IsPlaying { get => isPlaying; private set => isPlaying = value; }
-    public bool HasArtifact { get => hasArtifact; private set => hasArtifact = value; }
+    public bool HasArtifact { get => hasArtifact; set => hasArtifact = value; }
     public bool IsStuck { get => isStuck; set => isStuck = value; }
 }

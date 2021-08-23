@@ -146,7 +146,9 @@ public class BoardManager
                 break;
 
             case TileState.ARTIFACT:
+                EnterArtifactNode(player);
                 Debug.Log("Do you want this artifact ?");
+
                 break;
         }
     }
@@ -178,5 +180,12 @@ public class BoardManager
         {
             playerCurrentNodes[player].GetComponent<ClankNode>().state = TileState.NONE;
         }
+    }
+
+    public void EnterArtifactNode(int player)
+    {
+        Artifact artifact = playerCurrentNodes[player].GetComponent<Artifact>();
+        PlayerState playerState = GameManager.GetInstance().GetPlayerState(player);
+        playerState.HasArtifact = true;
     }
 }

@@ -6,7 +6,7 @@ public class SpawnManager : MonoBehaviour
 {
     public GameObject[] minorSecretsPrefab;
     public GameObject[] majorSecretsPrefab;
-    private float offset = 2f;
+    private float offset = 0.5f;
 
     public GameObject SpawnRandomMinorSecret(Vector3 tilePosition)
     {

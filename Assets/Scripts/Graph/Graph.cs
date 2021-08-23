@@ -39,7 +39,6 @@ public class Graph
             edges.RemoveAll(edge => nodes[node.id].Edges.Contains(edge));
         }
         nodes[node.id] = node;
-        UnityEngine.Debug.Log(node.Edges);
         foreach (Edge edge in node.Edges)
         {
             edges.Add(edge);
