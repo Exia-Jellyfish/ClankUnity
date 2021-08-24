@@ -127,6 +127,7 @@ public sealed class GameManager : MonoBehaviour
             clankCounters[player] += playerStates[player].ClankCubes;
             playerStates[player].ClankCubes = 0;
         }
+        boardManager.AddBoardClankTo(player, number);
     }
 
     // Terrain -> Main    
@@ -142,6 +143,7 @@ public sealed class GameManager : MonoBehaviour
             playerStates[player].ClankCubes += clankCounters[player];
             clankCounters[player] = 0;
         }
+        boardManager.RemoveBoardClankFrom(player, number);
     }
 
     // Vie -> Main

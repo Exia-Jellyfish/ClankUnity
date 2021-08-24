@@ -214,4 +214,19 @@ public class BoardManager
         playerState.VictoryPoints = GameManager.GetInstance().ScoreInventory(player) + playerState.Gold + GameManager.GetInstance().ScoreDeck(player) + GameManager.GetInstance().ScoreDiscard(player);
         Debug.Log("Your victory points : " + playerState.VictoryPoints);
     }
+    
+    public void AddBoardClankTo(int player, int number)
+    {
+        for (int i = 0; i < number; i++)
+        {
+            
+        }
+    }
+
+
+    public void RemoveBoardClankFrom(int player, int number)
+    {
+
+    }
+
 }
