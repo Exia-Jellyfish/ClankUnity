@@ -30,6 +30,7 @@ public class BoardManager
         LightOnAdjacentTiles(playerCurrentNodes[0]);
 
         SetupSecrets();
+        SetupArtifacts();
     }
 
     public void SetupSecrets()
@@ -52,6 +53,19 @@ public class BoardManager
             }
         }
     }
+
+    public void SetupArtifacts()
+    {
+        foreach (ClankNode clankNode in graph.GetNodes())
+        {
+            TileState secretState = clankNode.state;
+            if (secretState == TileState.ARTIFACT)
+            {
+                spawnManager.SpawnArtifact(clankNode.transform.position, clankNode.artifact.gameObject);
+            }
+        }
+    }
+
 
     public void LightOnAdjacentTiles(ClankNode clankNode)
     {

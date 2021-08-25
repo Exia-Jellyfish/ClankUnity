@@ -7,12 +7,6 @@ public class Node : MonoBehaviour
     protected List<Edge> edges;
     public int id;
 
-    /*public Node(int id)
-    {
-        edges = new List<Edge>();
-        this.id = id;
-    }*/
-
     private void Awake()
     {
         edges = new List<Edge>();
