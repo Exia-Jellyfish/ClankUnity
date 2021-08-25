@@ -27,7 +27,7 @@ public sealed class GameManager : MonoBehaviour
         return playerStates[activePlayer];
     }
 
-    private void Awake()
+    private void Start()
     {
         if(instance == null)
         {
@@ -54,9 +54,12 @@ public sealed class GameManager : MonoBehaviour
         clankCounters = new int[NUMBER_OF_PLAYERS];
         bag = new Bag();
         playerController = GameObject.Find("Player").GetComponent<PlayerController>();
+        Debug.Log("before boardManager in gamemanager");
         boardManager = new BoardManager();
-        inventoryManager = new InventoryManager();
+        Debug.Log("board fini");
 
+        inventoryManager = new InventoryManager();
+        Debug.Log("tout fini");
 
     }
 
@@ -127,7 +130,7 @@ public sealed class GameManager : MonoBehaviour
             clankCounters[player] += playerStates[player].ClankCubes;
             playerStates[player].ClankCubes = 0;
         }
-        boardManager.AddBoardClankTo(player, number);
+        //boardManager.AddBoardClankTo(player, number);
     }
 
     // Terrain -> Main    

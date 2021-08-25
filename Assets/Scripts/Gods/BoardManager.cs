@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using UnityEditor;
 
 public class BoardManager
 {
@@ -21,16 +22,21 @@ public class BoardManager
             playerTokens[i] = tokens[i].gameObject;
         }
         playerCurrentNodes = new ClankNode[GameManager.NUMBER_OF_PLAYERS];
+        Debug.Log("working");
         for (int i = 0; i < playerCurrentNodes.Length; i++)
         {
             playerCurrentNodes[i] = (ClankNode)graph.GetNode(0);
         }
+        Debug.Log("working ? lightsvalid");
         CardEffect.playerUpdated += LightOnValidTiles;
-        
+        Debug.Log("not working lightsadjacents");
         LightOnAdjacentTiles(playerCurrentNodes[0]);
-
+        Debug.Log("working ? afterlights");
         SetupSecrets();
+        Debug.Log("working ? aftersecrets");
         SetupArtifacts();
+        Debug.Log("working ? afterartifacts");
+
     }
 
     public void SetupSecrets()
@@ -70,8 +76,12 @@ public class BoardManager
     public void LightOnAdjacentTiles(ClankNode clankNode)
     {
         List<Node> adjacentNodes = graph.FindDirectedAdjacentNodes(clankNode);
-        foreach(Node node in adjacentNodes)
+        Debug.Log("adjacentsNodes" + adjacentNodes[0] + adjacentNodes[1] + adjacentNodes[2]);
+
+        foreach (Node node in adjacentNodes)
         {
+            Debug.Log("node before LightOn" + node);
+
             node.GetComponent<ClickTile>().LightOn();
         }
     }
@@ -125,11 +135,17 @@ public class BoardManager
         if (validNodes.Contains(clickedNode))
         {
             ClankEdge travelEdge = (ClankEdge)graph.FindConnectingEdge(playerCurrentNodes[player], clickedNode);
+            Debug.Log("before lightsoff");
             LightsOff();
+            Debug.Log("before pay");
             PayMoveCost(player, travelEdge);
+            Debug.Log("before move");
             MovePlayerToken(player, clickedNode);
+            Debug.Log("before type");
             DoTileTypeEffects(player);
+            Debug.Log("before state");
             DoTileStateEffects(player);
+            Debug.Log("before lightson");
             LightOnTiles(FindValidTiles(player));
         }
         else
@@ -205,11 +221,12 @@ public class BoardManager
 
     public void EnterArtifactNode(int player)
     {
-        bool option = UnityEditor.EditorUtility.DisplayDialog("Artifact", "Do you want this Artifact ?", "Yes", "No thanks");
+        /*bool option = EditorUtility.DisplayDialog("Artifact", "Do you want this Artifact ?", "Yes", "No thanks");
         if (option == true)
         {
-            AddArtifactToInventory(player);
-        }
+            
+        }*/
+        AddArtifactToInventory(player);
     }
 
     public void AddArtifactToInventory(int player)

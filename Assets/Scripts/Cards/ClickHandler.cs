@@ -7,7 +7,7 @@ public class ClickHandler : MonoBehaviour
     private GameObject card;
     private CardData data;
 
-    public void Awake()
+    public void Start()
     {
         card = gameObject;
         data = card.GetComponent<CardData>();

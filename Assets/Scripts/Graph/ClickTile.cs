@@ -5,7 +5,7 @@ using UnityEngine;
 public class ClickTile : MonoBehaviour
 {
     private MeshRenderer mesh;
-    private void Awake()
+    private void Start()
     {
         Rigidbody boardRb = transform.root.gameObject.GetComponent<Rigidbody>();
         GetComponent<FixedJoint>().connectedBody = boardRb;
