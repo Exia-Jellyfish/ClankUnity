@@ -19,4 +19,9 @@ public class SpawnManager : MonoBehaviour
         int randomSecret = Random.Range(0, majorSecretsPrefab.Length);
         return Instantiate(majorSecretsPrefab[randomSecret], tilePosition + new Vector3(0, offset, 0), Quaternion.identity);
     }
+
+    public GameObject SpawnArtifact(Vector3 tilePosition, GameObject artifactPrefab)
+    {
+        return Instantiate(artifactPrefab, tilePosition + new Vector3(0, offset, 0), Quaternion.identity);
+    }
 }
